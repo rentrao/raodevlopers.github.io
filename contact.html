@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rao Developers - Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gradient: linear-gradient(45deg, #6C63FF, #FF6584);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* HEADER WITH ANIMATION */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        /* COMPANY STATS */
+        .stats {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .stats h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .stats p {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* FOUNDERS SECTION */
+        .founders {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+        
+        .founder {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .founder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .founder img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .founder h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .founder p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* CONTACT FORM */
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .contact-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .contact-form h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .contact-form p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #999;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+        
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            background: white;
+            padding: 0 5px;
+            color: var(--primary);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+        
+        /* POPUP */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .popup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .popup p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .popup em {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .founders { flex-direction: column; align-items: center; }
+            .founder { width: 100%; max-width: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER WITH ANIMATION -->
+    <header>
+        <h1> Rao Developers Contact</h1>
+        <p>Get in touch with our team for your dream website!</p>
+    </header>
+
+    <!-- COMPANY STATS -->
+    <div class="stats">
+        <h2> About Our Company</h2>
+        <p>Founded in <span class="highlight">2025</span>, One Website. Endless Possibilities. Start with Rao Developers</p>
+        <p>Successfully delivered <span class="highlight">50+ projects</span> worldwide!</p>
+    </div>
+
+    <!-- FOUNDERS SECTION -->
+    <h2 style="text-align: center; color: var(--primary); margin-top: 2rem;"> Meet Our Ceo & Founders</h2>
+    <div class="founders">
+        <div class="founder">
+            <img src="https://i.ibb.co/tMK6rKqt/Picsart-25-04-17-15-09-20-787-1.jpg" alt="Rao Jatin">
+            <h3>Rao Jatin</h3>
+            <p>Co-Founder & Devloper</p>
+            <p>4+ years in web development. Also a Great designer By passion.</p>
+            <div style="margin-top: 1remOne Website. Endless Possibilities. Start with Rao Developers
+                <i class="fab fa-whatsapp" style="color: #1DA1F2; margin: 0 5px;"></i>
+                <i class="fab fa-instagram" style="color: #0077B5; margin: 0 5px;"></i>
+            </div>
+        </div>
+        <div class="founder">
+            <img src="https://i.ibb.co/XrQ9ZWRr/file-000000002ca061f8b1ee2b6249db7407-1.png" alt="Ravi Kalaliya">
+            <h3>Ravi Kalaliya</h3>
+            <p>Founder & CTO & financer</p>
+            <p>Expert in scalable solutions. Turns ideas into reality.</p>
+            <div style="margin-top: 1rem;">
+                <i class="fab fa-instagram" style="color: #1DA1F2; margin: 0 5px;"></i>
+                <i class="fab fa-whatsapp" style="color: #0077B5; margin: 0 5px;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="contact-form">
+        <h2>📩 Contact Us</h2>
+        <p>Fill the form below, and we'll get back to you soon!</p>
+        
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder=" " required>
+                <label for="name">Your Name</label>
+            </div>
+            
+            <div class="form-group">
+                <input type="tel" id="mobile" placeholder=" " required>
+                <label for="mobile">Mobile Number</label>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Email Address</label>
+            </div>
+            
+            <div class="form-group">
+                <select id="website-type" required>
+                    <option value="" disabled selected> </option>
+                    <option value="business">Business Website</option>
+                    <option value="ecommerce">E-commerce Store</option>
+                    <option value="portfolio">Portfolio Website</option>
+                    <option value="blog">Blog/News Website</option>
+                    <option value="custom">Custom Web App</option>
+                </select>
+                <label for="website-type" style="top: -10px; left: 10px; font-size: 0.8rem; background: white; padding: 0 5px;">What type of website?</label>
+            </div>
+            
+            <div class="form-group">
+                <textarea id="requirements" placeholder=" "></textarea>
+                <label for="requirements">Project Requirements</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Request <i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <!-- POPUP -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h3>🎉 Thank You!</h3>
+        <p>Your request has been sent to our team.</p>
+        <p>We'll contact you soon for confirmation.</p>
+        <p><em>~ Ravi Kalaliya</em></p>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show popup and overlay
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+            
+            // Hide after 7 seconds
+            setTimeout(function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('contactForm').reset();
+            }, 7000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rao Developers - Website Development Company</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #000000;
+            --accent-color: #ffffff;
+            --shadow-color: rgba(138, 43, 226, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4b0082);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 8s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .main-content {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .partners {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            border-radius: 3px;
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .partner-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partner-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+        
+        .partner-card:hover::before {
+            left: 100%;
+        }
+        
+        .partner-card img {
+            max-width: 100%;
+            max-height: 80px;
+            filter: grayscale(30%);
+            transition: filter 0.3s ease;
+        }
+        
+        .partner-card:hover img {
+            filter: grayscale(0%) brightness(1.2);
+        }
+        
+        .achievement {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            animation: slideInRight 1s ease-out;
+        }
+        
+        .articles {
+            margin-top: 4rem;
+        }
+        
+        .article-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 2px solid var(--primary-color);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+        
+        .article-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .article-card p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #4b0082);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .partner-logos {
+                gap: 1rem;
+            }
+            
+            .partner-card {
+                width: 120px;
+                height: 120px;
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Rao Developers</h1>
+            <p class="tagline">Innovative Web Solutions for the Digital Age</p>
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <section class="intro">
+            <p>Rao Developers is a premier website development company specializing in creating stunning, functional websites for businesses of all sizes.</p>
+            <p>With our expertise in modern web technologies and design principles, we transform your ideas into digital reality.</p>
+        </section>
+        
+        <section class="partners">
+            <h2>Our Trusted Partners</h2>
+            <p>Rao Developers is an affiliated programmer with these leading platforms</p>
+            
+            <div class="partner-logos">
+                <div class="partner-card">
+                    <img src="https://i.ibb.co/mFMpL82S/Screenshot-20250628-093129-Google.png" alt="Hostinger">
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.ibb.co/sdKZTG3M/logo5-1.png" alt="GoDaddy">
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.ibb.co/hFJ1QFWT/960w-407a5b547a876d7c130da3dfe2c18e56.png" alt="Free Name">
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.ibb.co/fVn3mwVs/logo-400x400.png" alt="Wix">
+                </div>
+                <div class="partner-card">
+                    <img src="https://i.ibb.co/ccF4dmWb/Screenshot-20250628-092811-Google.png" alt="Studio">
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <p>Rao Developers has successfully designed <strong>20+ websites</strong> in collaboration with these platforms</p>
+            </div>
+        </section>
+        
+        <section class="articles">
+            <h2>Insights & Articles</h2>
+            
+            <div class="article-card">
+                <h3>Why Choose Professional Web Development?</h3>
+                <p>In today's digital landscape, having a professionally developed website is no longer optional. A custom-built website offers superior performance, security, and scalability compared to template-based solutions. At Rao Developers, we craft websites that not only look stunning but also perform exceptionally across all devices.</p>
+                <p>Our team stays updated with the latest web technologies to ensure your site remains competitive in the ever-evolving online world.</p>
+            </div>
+            
+            <div class="article-card">
+                <h3>Our Development Process</h3>
+                <p>Our proven development process ensures timely delivery and exceptional quality. We begin with thorough requirement analysis, followed by wireframing and design mockups. After client approval, we move to development with regular progress updates.</p>
+                <p>Before launch, we conduct rigorous testing across devices and browsers. Post-launch, we provide maintenance and support to keep your website running smoothly.</p>
+            </div>
+            
+            <div class="article-card">
+                <h3>Hosting Solutions We Recommend</h3>
+                <p>Through our partnerships with leading hosting providers like Hostinger, GoDaddy, and others, we can recommend the perfect hosting solution for your website's needs. Whether you need shared hosting, VPS, or dedicated servers, we'll guide you to the optimal choice.</p>
+                <p>Our expertise with these platforms means we can optimize your website's performance specifically for your chosen hosting environment.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2023 Rao Developers. All Rights Reserved.</p>
+        <p>Website Development Company | Affiliated Programmer with Leading Platforms</p>
+    </footer>
+</body>
+</html>
