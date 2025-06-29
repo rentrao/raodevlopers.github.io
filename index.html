@@ -813,12 +813,52 @@
         // Start the typewriter effect
         setTimeout(type, 1000);
 
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Form Submission with Telegram Bot
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const business = document.getElementById('business').value;
+    const message = document.getElementById('message').value;
+
+    const chatId = '5165964724';
+    const token = '8187433543:AAF4sxqnhCohX5WTl7c7CDSiuxfCMhH5_Yw';
+
+    const text = `
+📩 *New Contact Form Submission*
+
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+🏪 *Business Type:* ${business}
+📝 *Message:* ${message}
+    `;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: text,
+            parse_mode: 'Markdown'
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
             alert('Thank you for your message! We will contact you soon.');
-            this.reset();
-        });
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('Error sending message to Telegram.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error occurred while submitting the form.');
+    });
+});
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
