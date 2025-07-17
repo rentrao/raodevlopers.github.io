@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rao Developers Hirings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .home-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .home-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        .submit-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        .policy {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .policy h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .policy ul {
+            padding-left: 20px;
+        }
+        
+        .policy li {
+            margin-bottom: 10px;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .modal-content h2 {
+            color: #2ecc71;
+            margin-top: 0;
+        }
+        
+        .close-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .call-icon {
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-phone-alt call-icon"></i> Rao Developers Hirings</h1>
+            <a href="http://www.raodevlopers.xyz" class="home-btn">Home</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="form-container">
+            <form id="hiringForm">
+                <div class="form-group">
+                    <label for="name">Enter Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Highest Qualification:</label>
+                    <select id="qualification" name="qualification" required>
+                        <option value="" disabled selected>Select Qualification</option>
+                        <option value="10th Passed">10th Passed</option>
+                        <option value="12th Passed">12th Passed</option>
+                        <option value="Graduation">Graduation</option>
+                        <option value="Post Graduation">Post Graduation</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Select Your Gender:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Occupation:</label>
+                    <select id="occupation" name="occupation" required>
+                        <option value="" disabled selected>Select Occupation</option>
+                        <option value="Student">Student</option>
+                        <option value="Working Professional">Working Professional</option>
+                        <option value="Berozgar">Berozgar</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="about">About Yourself (minimum 20 words):</label>
+                    <textarea id="about" name="about" minlength="100" required></textarea>
+                    <small>Please write at least 20 words about yourself</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number :</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+        
+        <div class="policy">
+            <h3>Hiring Policy:</h3>
+            <ul>
+                <li>1. We are only hiring individuals who are capable of handling calling tasks.</li>
+                <li>2. The salary will be provided at the end of each month.</li>
+                <li>3. The company will not provide a separate phone number for calling purposes.</li>
+                <li>4. <span class="bold">For information </span>call/massage <span class="bold">+919499473347</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <h2>Thank You!</h2>
+            <p>Thank you for your submission. We will contact you shortly.</p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('hiringForm');
+        const modal = document.getElementById('thankYouModal');
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Format the message for Telegram
+            const message = `New Hiring Application:\n\n` +
+                            `Name: ${data.name}\n` +
+                            `Qualification: ${data.qualification}\n` +
+                            `Gender: ${data.gender}\n` +
+                            `Occupation: ${data.occupation}\n` +
+                            `About: ${data.about}\n` +
+                            `Phone: ${data.phone || 'Not provided'}`;
+            
+            try {
+                // Send to Telegram bot
+                const botToken = '8187433543:AAF4sxqnhCohX5WTl7c7CDSiuxfCMhH5_Yw';
+                const chatId = '5165964724';
+                
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                });
+                
+                if (response.ok) {
+                    // Show thank you modal
+                    modal.style.display = 'flex';
+                    // Reset form
+                    form.reset();
+                } else {
+                    alert('There was an error submitting your form. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            }
+        });
+        
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
