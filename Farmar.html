@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FarmerSide Business - India's trusted online marketplace for genuine tractor spare parts. OEM parts for Mahindra, Swaraj, Sonalika, John Deere and more with pan-India delivery.">
+    <title>FarmerSide Business | Genuine Tractor Spare Parts Online</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #3a5a40;
+            --secondary-green: #588157;
+            --light-green: #a3b18a;
+            --primary-orange: #e76f51;
+            --secondary-orange: #f4a261;
+            --light-orange: #ffbf69;
+            --dark-text: #2b2d42;
+            --light-text: #f8f9fa;
+            --bg-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/rice-paper-3.png');
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 600;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-orange);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-text);
+            margin: 0 8px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-orange);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .search-box {
+            position: relative;
+            width: 200px;
+        }
+        
+        .search-input {
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            width: 100%;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 2px rgba(231, 111, 81, 0.2);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-green);
+        }
+        
+        .cart-icon, .user-icon {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-left: 15px;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-orange);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: #d45a3d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-green);
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-orange);
+            margin: 15px auto;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background-color: var(--bg-light);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .category-body {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+        
+        .btn-outline-custom {
+            color: var(--primary-orange);
+            border: 1px solid var(--primary-orange);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-custom:hover {
+            background-color: var(--primary-orange);
+            color: white;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            border: 1px solid #eee;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            object-fit: contain;
+            width: 100%;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .product-body {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-green);
+        }
+        
+        .product-models {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn-sm-custom {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-sm-custom:hover {
+            background-color: #2d4532;
+            transform: translateY(-2px);
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content {
+            padding-left: 40px;
+        }
+        
+        .about-title {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonial-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-family: Georgia, serif;
+            font-size: 60px;
+            color: var(--light-green);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+        
+        .testimonial-location {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(rgba(58, 90, 64, 0.9), rgba(88, 129, 87, 0.9)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-light-custom {
+            background-color: white;
+            color: var(--primary-green);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .btn-light-custom:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: var(--light-orange);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            color: var(--light-green);
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--light-orange);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: var(--light-green);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                padding-left: 0;
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .category-card, .product-card {
+                margin-bottom: 20px;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+       <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Header/Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Farmer<span>Side</span> Business</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <input type="text" class="search-input" placeholder="Search parts..." aria-label="Search">
+                            <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                        </div>
+                        <a href="#" class="cart-icon" aria-label="Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">3</span>
+                        </a>
+                        <a href="#" class="user-icon ms-3" aria-label="Account">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Genuine Tractor Spare Parts Delivered Pan India</h1>
+                <p class="hero-subtitle">We deliver original parts for Mahindra, Swaraj, Sonalika, John Deere, and more</p>
+                <a href="#categories" class="btn btn-primary-custom">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose FarmerSide Business</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4 class="feature-title">Genuine OEM Parts</h4>
+                        <p>100% authentic parts directly from manufacturers</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4 class="feature-title">Fast Delivery</h4>
+                        <p>3-5 days delivery across India</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4 class="feature-title">Pan-India Shipping</h4>
+                        <p>We deliver to every corner of India</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="feature-title">Trusted by Farmers</h4>
+                        <p>10,000+ happy farmers and mechanics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Categories</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1611270630257-9a5d1e5e4b3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Engine Parts" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Engine Parts</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1626808642875-0aa545483df1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Hydraulic Systems" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Hydraulic Systems</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1611270630257-9a5d1e5e4b3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Filters & Lubricants" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Filters & Lubricants</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1589128777073-263566ae5e4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Tyres & Tubes" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Tyres & Tubes</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Electrical & Lighting" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Electrical & Lighting</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Body Panels" class="category-img">
+                        <div class="category-body">
+                            <h3 class="category-title">Body Panels</h3>
+                            <a href="#" class="btn btn-outline-custom">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popular Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Popular Products</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/QT/YC/JA/3033603/tractor-piston-500x500.jpg" alt="Tractor Piston" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Tractor Piston Kit</h3>
+                            <p class="product-models">For Mahindra 575, Swaraj 744</p>
+                            <div class="product-price">₹1,850</div>
+                            <button class="btn btn-sm-custom w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/OV/IC/GT/3033603/tractor-clutch-plate-500x500.jpg" alt="Clutch Plate" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Clutch Plate Assembly</h3>
+                            <p class="product-models">For Sonalika DI 35, John Deere 5105</p>
+                            <div class="product-price">₹2,450</div>
+                            <button class="btn btn-sm-custom w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/SE/ND/PM/3033603/tractor-oil-filter-500x500.jpg" alt="Oil Filter" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Oil Filter</h3>
+                            <p class="product-models">For Mahindra 265, Swaraj 855</p>
+                            <div class="product-price">₹320</div>
+                            <button class="btn btn-sm-custom w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/SE/ND/PM/3033603/tractor-air-filter-500x500.jpg" alt="Air Filter" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Air Filter</h3>
+                            <p class="product-models">For Sonalika DI 42, John Deere 5310</p>
+                            <div class="product-price">₹680</div>
+                            <button class="btn btn-sm-custom w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary-custom">View All Products</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Our Workshop" class="about-img img-fluid">
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2 class="about-title">About FarmerSide Business</h2>
+                        <p>FarmerSide Business is a trusted supplier of high-quality tractor spare parts across India. We understand the importance of reliable farming equipment and the critical role tractors play in agricultural productivity.</p>
+                        <p>Our mission is to ensure farmers and mechanics have easy access to original products at fair prices with farmer-friendly service. We source directly from OEM manufacturers to guarantee authenticity and quality.</p>
+                        <p>With our pan-India delivery network, we bring genuine tractor parts to your doorstep, saving you time and ensuring your equipment stays in top condition.</p>
+                        <a href="#" class="btn btn-primary-custom mt-3">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Farmers Say</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">I was skeptical about buying tractor parts online, but FarmerSide Business delivered genuine Mahindra parts to my village in just 4 days. Saved me a trip to the city.</p>
+                        <div class="testimonial-author">Ramesh Patel</div>
+                        <div class="testimonial-location">Vadodara, Gujarat</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">As a tractor mechanic, I need reliable parts suppliers. FarmerSide Business has never let me down with quality or delivery time. Their customer support is excellent.</p>
+                        <div class="testimonial-author">Suresh Kumar</div>
+                        <div class="testimonial-location">Ludhiana, Punjab</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The hydraulic pump I ordered works perfectly on my Swaraj tractor. Price was better than local dealers and the part arrived well-packaged. Will order again!</p>
+                        <div class="testimonial-author">Priya Sharma</div>
+                        <div class="testimonial-location">Bhopal, Madhya Pradesh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Need Help Finding the Right Part?</h2>
+            <p class="cta-subtitle">Call or WhatsApp us and we'll guide you to the correct spare part for your tractor model.</p>
+            <a href="#" class="btn btn-light-custom">Contact Us</a>
+            <a href="https://wa.me/919876543210" class="btn btn-light-custom">WhatsApp Now</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-title">FarmerSide Business</h3>
+                    <p>Your trusted partner for genuine tractor spare parts across India.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Engine Parts</a></li>
+                        <li><a href="#">Hydraulic Systems</a></li>
+                        <li><a href="#">Filters & Lubricants</a></li>
+                        <li><a href="#">Tyres & Tubes</a></li>
+                        <li><a href="#">Electrical Parts</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> support@farmerside.com</p>
+                        <p><i class="fab fa-whatsapp"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra, India</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FarmerSide Business. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sticky header on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
