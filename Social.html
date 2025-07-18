@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rao Developers - Social Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #f72585;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            color: var(--light);
+            min-height: 100vh;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .home-btn {
+            padding: 10px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-btn:hover {
+            background: rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .home-btn i {
+            margin-right: 8px;
+        }
+
+        /* Main Content */
+        .main-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .main-title p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* Social Links Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .social-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: var(--light);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(67, 97, 238, 0.2);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .social-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .social-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Platform Specific Colors */
+        .instagram { color: #E1306C; }
+        .whatsapp { color: #25D366; }
+        .facebook { color: #1877F2; }
+        .sharechat { color: #5ECFFF; }
+        .snapchat { color: #FFFC00; }
+        .telegram { color: #0088CC; }
+        .threads { color: #000000; }
+        .twitter { color: #1DA1F2; }
+        .youtube { color: #FF0000; }
+        .website { color: var(--primary); }
+
+        /* Owner Section */
+        .owner-section {
+            text-align: center;
+            padding: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .owner-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .owner-section h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .portfolio-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title h1 {
+                font-size: 2rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i>
+                Rao Developers
+            </a>
+            <a href="https://www.raodevlopers.xyz/" class="home-btn">
+                <i class="fas fa-home"></i> Home
+            </a>
+        </header>
+
+        <main>
+            <div class="main-title">
+                <h1>Connect With Us</h1>
+                <p>Explore all our official social media platforms in one place</p>
+            </div>
+
+            <div class="social-grid">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/raodevlopers?igsh=MzhqOGhoYmljYWk0" class="social-card" target="_blank">
+                    <div class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Instagram</h3>
+                        <p>Follow us on Instagram</p>
+                    </div>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/919499473347?text=Namaste%2C%20mujhe%20aapki%20services%20ke%20baare%20mein%20jaanana%20hai." class="social-card" target="_blank">
+                    <div class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>WhatsApp</h3>
+                        <p>Message us on WhatsApp</p>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/16tsB2rpFy/" class="social-card" target="_blank">
+                    <div class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Facebook</h3>
+                        <p>Connect on Facebook</p>
+                    </div>
+                </a>
+
+                <!-- Sharechat -->
+                <a href="https://sharechat.com/profile/raodevlopers?d=n" class="social-card" target="_blank">
+                    <div class="social-icon sharechat">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Sharechat</h3>
+                        <p>Join us on Sharechat</p>
+                    </div>
+                </a>
+
+                <!-- Snapchat -->
+                <a href="https://www.snapchat.com/add/raodevlopers?share_id=xBOSFZZGG08&locale=en-IN-u-mu-celsius" class="social-card" target="_blank">
+                    <div class="social-icon snapchat">
+                        <i class="fab fa-snapchat-ghost"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Snapchat</h3>
+                        <p>Add on Snapchat</p>
+                    </div>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/raodevlopers" class="social-card" target="_blank">
+                    <div class="social-icon telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Telegram</h3>
+                        <p>Join our Telegram</p>
+                    </div>
+                </a>
+
+                <!-- Threads -->
+                <a href="https://www.threads.net/@raodevlopers" class="social-card" target="_blank">
+                    <div class="social-icon threads">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Threads</h3>
+                        <p>Follow us on Threads</p>
+                    </div>
+                </a>
+
+                <!-- Twitter/X -->
+                <a href="https://x.com/raojatindev?t=Ny2oVbSQjEEL8IqAqepFuA&s=09" class="social-card" target="_blank">
+                    <div class="social-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>X (Twitter)</h3>
+                        <p>Tweet with us on X</p>
+                    </div>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/@raodevlopers?si=MGdHEhPtNMm9VQlE" class="social-card" target="_blank">
+                    <div class="social-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>YouTube</h3>
+                        <p>Watch our YouTube Channel</p>
+                    </div>
+                </a>
+
+                <!-- Official Website -->
+                <a href="https://www.raodevlopers.xyz" class="social-card" target="_blank">
+                    <div class="social-icon website">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3>Official Website</h3>
+                        <p>Visit Official Website</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="owner-section">
+                <h3><i class="fas fa-user-tie"></i> Created by Rao Jatin — Founder of Rao Developers</h3>
+                <a href="https://raojatindevloper.github.io/" class="portfolio-btn" target="_blank">View Portfolio</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2023 Rao Developers. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
