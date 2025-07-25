@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZoomKart Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen">
+
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-indigo-600">ZoomKart Admin</h1>
+    <div class="flex items-center gap-3">
+      <span id="adminEmail" class="text-sm text-gray-600"></span>
+      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Logout</button>
+    </div>
+  </header>
+
+  <main class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Dashboard Overview</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Total Orders</h3>
+        <p class="text-3xl font-bold text-indigo-600">128</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Revenue</h3>
+        <p class="text-3xl font-bold text-green-500">₹28,450</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Users</h3>
+        <p class="text-3xl font-bold text-blue-500">764</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Rating</h3>
+        <p class="text-3xl font-bold text-yellow-400">4.7 ⭐</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded shadow">➕ Add New Product</button>
+      <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded shadow">📦 Manage Orders</button>
+      <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded shadow">👥 Manage Users</button>
+      <button class="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 rounded shadow">📊 View Reports</button>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAD5a1QGDu5gvntWoQ1ttuhNP4S38D6Sgk",
+      authDomain: "zoomkart-94e80.firebaseapp.com",
+      projectId: "zoomkart-94e80",
+      storageBucket: "zoomkart-94e80.appspot.com",
+      messagingSenderId: "807454083010",
+      appId: "1:807454083010:web:ab1053f1b2af1cf54a385b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Auth check
+    onAuthStateChanged(auth, (user) => {
+      if (user && user.email === "admin@zoomkart.com") {
+        document.getElementById("adminEmail").textContent = user.email;
+      } else {
+        window.location.href = "../login.html";
+      }
+    });
+
+    // Logout function
+    window.logout = function () {
+      signOut(auth).then(() => {
+        window.location.href = "../login.html";
+      });
+    };
+  </script>
+</body>
+</html>
