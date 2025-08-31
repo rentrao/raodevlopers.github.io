@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment - Rao Jatin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4e54c8;
+            --primary-gradient: linear-gradient(to right, #8f94fb, #4e54c8);
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #6c5ce7;
+            --primary-gradient: linear-gradient(to right, #a29bfe, #6c5ce7);
+            --dark: #ecf0f1;
+            --light: #2c3e50;
+            --card-bg: #2d3436;
+            --text-color: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            position: relative;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            background: var(--primary-gradient);
+            padding: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 84, 200, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(78, 84, 200, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 84, 200, 0); }
+        }
+
+        .profile-picture {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: var(--primary);
+        }
+
+        .pay-to {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .pay-to-sub {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .amount-input {
+            width: 100%;
+            padding: 15px 15px 15px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 18px;
+            transition: var(--transition);
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .amount-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+        }
+
+        .pay-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 18px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(78, 84, 200, 0.4);
+        }
+
+        .pay-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: var(--error);
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+
+        .security-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #7f8c8d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .payment-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .wave-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%234e54c8" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            z-index: -1;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .profile-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .pay-to {
+                font-size: 20px;
+            }
+        }
+
+        .amount-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .amount-btn {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .amount-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .success-checkmark {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--success);
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="profile-container">
+    <img src="https://i.ibb.co/WNjDHDNJ/Picsart-25-04-17-15-09-20-787-1.jpg" 
+         alt="Profile Picture" 
+         class="profile-picture">
+</div>
+                <h1 class="pay-to">Pay To Rao Jatin</h1>
+                <p class="pay-to-sub">Secure UPI Payment</p>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label" for="amount">
+                    <span>Enter Amount (₹)</span>
+                    <span id="amount-error" class="error-message">Please enter a valid amount!</span>
+                </label>
+                
+                <div class="input-wrapper">
+                    <span class="currency-symbol">₹</span>
+                    <input type="text" id="amount" class="amount-input" placeholder="0.00" inputmode="decimal">
+                </div>
+                
+                <div class="amount-buttons">
+                    <div class="amount-btn" data-amount="100">₹100</div>
+                    <div class="amount-btn" data-amount="200">₹200</div>
+                    <div class="amount-btn" data-amount="500">₹500</div>
+                    <div class="amount-btn" data-amount="1000">₹1000</div>
+                </div>
+            </div>
+            
+            <div class="success-checkmark">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <button id="pay-button" class="pay-button">
+                <i class="fas fa-lock"></i>
+                Pay Securely
+            </button>
+            
+            <div class="payment-options">
+                <div class="payment-option"><i class="fab fa-google-pay"></i></div>
+                <div class="payment-option"><i class="fab fa-amazon-pay"></i></div>
+                <div class="payment-option"><i class="fab fa-apple-pay"></i></div>
+                <div class="payment-option"><i class="fas fa-mobile-alt"></i></div>
+            </div>
+            
+            <div class="security-note">
+                <i class="fas fa-shield-alt"></i>
+                <span>Your payment is secured with encryption</span>
+            </div>
+            
+            <div class="wave-bg"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInput = document.getElementById('amount');
+            const payButton = document.getElementById('pay-button');
+            const amountError = document.getElementById('amount-error');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const successCheckmark = document.querySelector('.success-checkmark');
+            const amountButtons = document.querySelectorAll('.amount-btn');
+            
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            // Amount quick-select buttons
+            amountButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const amount = this.getAttribute('data-amount');
+                    amountInput.value = amount;
+                    validateAmount();
+                    
+                    // Visual feedback for selection
+                    amountButtons.forEach(btn => btn.style.borderColor = '#e0e0e0');
+                    this.style.borderColor = 'var(--primary)';
+                    this.style.color = 'var(--primary)';
+                });
+            });
+            
+            // Allow only numbers and decimal point
+            amountInput.addEventListener('input', function(e) {
+                // Remove any non-numeric characters except decimal point
+                this.value = this.value.replace(/[^0-9.]/g, '');
+                
+                // Ensure only one decimal point
+                const decimalCount = (this.value.match(/\./g) || []).length;
+                if (decimalCount > 1) {
+                    this.value = this.value.substring(0, this.value.length - 1);
+                }
+                
+                // Hide error message when user starts typing
+                if (this.value.length > 0) {
+                    amountError.style.display = 'none';
+                }
+                
+                validateAmount();
+            });
+            
+            // Validate amount on input blur
+            amountInput.addEventListener('blur', validateAmount);
+            
+            // Prevent paste of non-numeric content
+            amountInput.addEventListener('paste', function(e) {
+                const pastedText = e.clipboardData.getData('text');
+                if (!/^[0-9.]*$/.test(pastedText)) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Validate amount function
+            function validateAmount() {
+                const amount = amountInput.value.trim();
+                
+                if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
+                    amountError.style.display = 'block';
+                    return false;
+                } else {
+                    amountError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            // Handle pay button click
+            payButton.addEventListener('click', function() {
+                if (!validateAmount()) {
+                    // Shake animation for error feedback
+                    amountInput.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        amountInput.style.animation = '';
+                    }, 500);
+                    return;
+                }
+                
+                const amount = amountInput.value.trim();
+                
+                // Show success animation
+                successCheckmark.style.display = 'block';
+                payButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                payButton.disabled = true;
+                
+                // Create the UPI payment URL
+                const upiUrl = `upi://pay?pa=piyushproof@fam&pn=Rao Jatin&am=${amount}`;
+                
+                // Redirect to UPI URL after a brief delay to show the success animation
+                setTimeout(() => {
+                    window.location.href = upiUrl;
+                    
+                    // Reset button state after 3 seconds in case redirect fails
+                    setTimeout(() => {
+                        payButton.innerHTML = '<i class="fas fa-lock"></i> Pay Securely';
+                        payButton.disabled = false;
+                        successCheckmark.style.display = 'none';
+                    }, 3000);
+                }, 1500);
+            });
+            
+            // Add shake animation for errors
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
