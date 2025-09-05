@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Your Order - Rao Developers</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" type="image/jpeg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables - iPhone-inspired theme */
+        :root {
+            --primary-blue: #007AFF;
+            --secondary-blue: #0056B3;
+            --accent-blue: #409CFF;
+            --dark-navy: #1C1C1E;
+            --darker-navy: #000000;
+            --light-bg: #F2F2F7;
+            --card-bg: #FFFFFF;
+            --text-dark: #1C1C1E;
+            --text-gray: #8E8E93;
+            --text-light: #FFFFFF;
+            --border-color: #C6C6C8;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #007AFF 0%, #0056B3 100%);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --card-radius: 14px;
+            --button-radius: 10px;
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 0.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        /* Order Details */
+        .order-details {
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        /* Payment Notice */
+        .payment-notice {
+            background: linear-gradient(135deg, #007AFF 0%, #0056B3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--card-radius);
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(0, 122, 255, 0.5), 0 0 20px rgba(0, 122, 255, 0.3);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(0, 122, 255, 0.7), 0 0 30px rgba(0, 122, 255, 0.5);
+            }
+        }
+
+        .payment-notice h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .payment-notice p {
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* Button */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--button-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            transform: translateY(0);
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-navy);
+            color: var(--text-light);
+            padding: 2rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .detail-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" alt="Rao Developers Logo">
+            <span class="logo-text">Rao Developers</span>
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="section-title">
+                <div class="divider"></div>
+                <h1>Confirm Your Order</h1>
+                <p>Please review your details before proceeding to payment</p>
+            </div>
+            
+            <div class="card">
+                <h2 style="margin-bottom: 1.5rem; font-weight: 600;">Your Information</h2>
+                
+                <div class="order-details" id="orderDetails">
+                    <!-- Details will be populated by JavaScript -->
+                </div>
+                
+                <div class="payment-notice">
+                    <h3>Processing Fee Required</h3>
+                    <p>You need to pay ₹99 processing fee for security purpose</p>
+                </div>
+                
+                <button id="continueBtn" class="btn btn-primary">
+                    <i class="fas fa-lock"></i> Continue to Payment
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rao Developers. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get query parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Extract form data
+        const formData = {
+            name: urlParams.get('name') || 'Not provided',
+            email: urlParams.get('email') || 'Not provided',
+            phone: urlParams.get('phone') || 'Not provided',
+            service: urlParams.get('service') || 'Not provided',
+            message: urlParams.get('message') || 'Not provided'
+        };
+        
+        // Display order details
+        const orderDetails = document.getElementById('orderDetails');
+        
+        orderDetails.innerHTML = `
+            <div class="detail-item">
+                <span class="detail-label">Full Name:</span>
+                <span class="detail-value">${formData.name}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email Address:</span>
+                <span class="detail-value">${formData.email}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Mobile Number:</span>
+                <span class="detail-value">${formData.phone}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Service:</span>
+                <span class="detail-value">${formData.service}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Message:</span>
+                <span class="detail-value">${formData.message}</span>
+            </div>
+        `;
+        
+        // Continue button functionality
+        const continueBtn = document.getElementById('continueBtn');
+        
+        continueBtn.addEventListener('click', () => {
+            // Redirect to payment page
+            window.location.href = 'payment.html';
+        });
+    </script>
+</body>
+</html>

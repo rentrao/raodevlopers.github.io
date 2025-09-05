@@ -3,402 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Payment | Rao Developers</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Secure Payment - Rao Developers</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" type="image/jpeg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* CSS Variables - Premium Dark Theme */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --danger: #dc2626;
-            --success: #16a34a;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-700: #374151;
-            --gray-900: #111827;
+            --primary-blue: #007AFF;
+            --secondary-blue: #0056B3;
+            --accent-blue: #409CFF;
+            --dark-bg: #121212;
+            --darker-bg: #0A0A0A;
+            --card-bg: #1E1E1E;
+            --card-border: #333333;
+            --text-light: #FFFFFF;
+            --text-gray: #8D8D8D;
+            --success: #34C759;
+            --gradient-primary: linear-gradient(135deg, #007AFF 0%, #0056B3 100%);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --card-radius: 14px;
+            --button-radius: 10px;
+            --glow: 0 0 15px rgba(0, 122, 255, 0.5);
         }
-        
+
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #f9fafb;
-            color: var(--gray-900);
-            line-height: 1.5;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        
+
         /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--gray-200);
-            margin-bottom: 2rem;
+            background: var(--darker-bg);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--card-border);
         }
-        
+
         .logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-light);
         }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 2rem 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
         }
-        
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--gray-900);
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
-        
-        /* Main Content */
+
         .card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
             padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
             margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+        .section-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
-        
-        .card-header {
+
+        .section-title p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            max-width: 400px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        /* Payment UI */
+        .payment-info {
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .payment-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .payment-methods {
+            margin-bottom: 2rem;
+        }
+
+        .payment-methods h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .method-tabs {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--gray-900);
-        }
-        
-        .card-subtitle {
-            color: var(--gray-700);
-            font-size: 1rem;
-        }
-        
-        .divider {
-            height: 1px;
-            background-color: var(--gray-200);
-            margin: 1.5rem 0;
-        }
-        
-        /* Reason Section */
-        .reason-section {
-            background-color: var(--gray-100);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .reason-text {
-            font-weight: 500;
-        }
-        
-        .reason-link {
-            color: var(--danger);
-            font-weight: 600;
-            text-decoration: underline;
+
+        .method-tab {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            text-align: center;
             cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        
-        .reason-link:hover {
-            color: #b91c1c;
-        }
-        
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
             transition: all 0.3s ease;
         }
-        
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
+
+        .method-tab.active {
+            background: rgba(0, 122, 255, 0.15);
+            border-color: var(--primary-blue);
+            box-shadow: var(--glow);
         }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 1rem;
-            width: 100%;
-            max-width: 500px;
-            padding: 2rem;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+
+        .method-tab i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
         }
-        
-        .modal.active .modal-content {
-            transform: translateY(0);
+
+        .method-tab span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-light);
         }
-        
-        .modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+
+        .payment-form {
+            display: none;
         }
-        
-        .modal-body {
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .form-group {
             margin-bottom: 1.5rem;
-            color: var(--gray-700);
         }
-        
-        .modal-footer {
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-row {
             display: flex;
-            justify-content: flex-end;
             gap: 1rem;
         }
-        
-        /* Buttons */
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Button */
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 1rem 2rem;
             border: none;
-            font-size: 1rem;
+            border-radius: var(--button-radius);
+            font-weight: 600;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            transform: translateY(0);
+            justify-content: center;
+            width: 100%;
         }
-        
-        .btn-secondary {
-            background-color: var(--gray-100);
-            color: var(--gray-700);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--gray-200);
-        }
-        
+
         .btn-primary {
-            background-color: var(--primary);
+            background: var(--primary-blue);
             color: white;
+            box-shadow: var(--shadow);
         }
-        
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background: var(--secondary-blue);
         }
-        
+
+        /* Security Badge */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
         /* Footer */
         .footer {
+            background: var(--darker-bg);
+            color: var(--text-light);
+            padding: 2rem 0 1rem;
             margin-top: auto;
-            padding: 2rem 0;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-bottom {
             text-align: center;
-            border-top: 1px solid var(--gray-200);
+            padding-top: 1.5rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
         }
-        
-        .footer-text {
-            color: var(--gray-700);
-            margin-bottom: 1rem;
-        }
-        
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--gray-100);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            color: var(--gray-700);
-        }
-        
-        .security-badge svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--success);
-        }
-        
-        /* Animations */
-        .animate-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        /* Responsive */
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .card {
+                padding: 2rem;
+            }
+            
+            .method-tabs {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
             .container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .card {
                 padding: 1.5rem;
             }
             
-            .modal-content {
-                margin: 0 1rem;
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .payment-amount {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header animate__animated animate__fadeIn">
-            <div class="logo">
-                <div class="logo-icon">RD</div>
-                <div class="logo-text">Rao Developers</div>
-            </div>
-            <div class="security-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11V11.99z"></path>
-                </svg>
-                Secure Payment
-            </div>
-        </header>
-        
-        <main class="animate__animated animate__fadeInUp">
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" alt="Rao Developers Logo">
+            <span class="logo-text">Rao Developers</span>
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
             <div class="card">
-                <div class="card-header">
-                    <h1 class="card-title">Hello Duck Delivery Owner</h1>
-                    <p class="card-subtitle">Thank you for choosing Rao Developers - We deliver our best service</p>
-                </div>
-                
-                <div class="divider"></div>
-                
-                <div class="reason-section">
-                    <p class="reason-text">
-                        You need to complete a security deposit for 
-                        <span class="reason-link animate-pulse" id="reasonTrigger">
-                            <strong>important reasons</strong>
-                        </span>
-                    </p>
+                <div class="section-title">
+                    <div class="divider"></div>
+                    <h1>Secure Payment Gateway</h1>
+                    <p>Processing fee ₹99 required to continue your order.</p>
                 </div>
                 
                 <div class="payment-info">
-                    <p>This deposit ensures commitment to the development process and covers initial resource allocation.</p>
+                    <div class="payment-amount">₹99</div>
+                    <div class="payment-label">Processing Fee</div>
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Select Payment Method</h3>
+                    
+                    <div class="method-tabs">
+                        <div class="method-tab active" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="method-tab" data-method="upi">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>UPI</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Payment Form -->
+                    <div class="payment-form active" id="cardForm">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" placeholder="John Doe">
+                        </div>
+                    </div>
+                    
+                    <!-- UPI Payment Form -->
+                    <div class="payment-form" id="upiForm">
+                        <div class="form-group">
+                            <label for="upiId">UPI ID</label>
+                            <input type="text" id="upiId" placeholder="yourname@upi">
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="completePayment" class="btn btn-primary">
+                    <i class="fas fa-lock"></i> Complete Payment
+                </button>
+                
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure & Encrypted Payment</span>
                 </div>
             </div>
-        </main>
-    </div>
-    
-    <footer class="footer animate__animated animate__fadeIn">
-        <p class="footer-text">Thank you for your business</p>
-        <div class="security-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
-            </svg>
-            Encryption Payment Technology by Rao Developers
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rao Developers. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
-    
-    <!-- Modal -->
-    <div class="modal" id="reasonModal">
-        <div class="modal-content">
-            <h3 class="modal-title">Security Deposit Required</h3>
-            <div class="modal-body">
-                <p>When you place an order with Rao Developers for frontend and backend development services:</p>
-                <ul style="margin: 1rem 0 1rem 1.5rem;">
-                    <li>Our developers dedicate time and resources to your project</li>
-                    <li>Server infrastructure is provisioned specifically for your needs</li>
-                    <li>Project management resources are allocated</li>
-                </ul>
-                <p><strong>If you cancel after work has begun:</strong></p>
-                <ul style="margin: 1rem 0 1rem 1.5rem;">
-                    <li>Development hours cannot be recovered</li>
-                    <li>Server costs remain incurred</li>
-                    <li>Project slot becomes unavailable for other clients</li>
-                </ul>
-                <p>This security deposit protects against these costs and ensures serious commitment to the project.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="modalBackBtn">Back</button>
-                <button class="btn btn-primary" id="modalPayBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="19" x2="12" y2="5"></line>
-                        <polyline points="5 12 12 5 19 12"></polyline>
-                    </svg>
-                    Proceed to Payment
-                </button>
-            </div>
-        </div>
-    </div>
-    
+
     <script>
-        // Modal functionality
-        const reasonTrigger = document.getElementById('reasonTrigger');
-        const reasonModal = document.getElementById('reasonModal');
-        const modalBackBtn = document.getElementById('modalBackBtn');
-        const modalPayBtn = document.getElementById('modalPayBtn');
+        // Payment method tabs
+        const methodTabs = document.querySelectorAll('.method-tab');
+        const paymentForms = document.querySelectorAll('.payment-form');
         
-        reasonTrigger.addEventListener('click', () => {
-            reasonModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        methodTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                methodTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all payment forms
+                paymentForms.forEach(form => form.classList.remove('active'));
+                
+                // Show the selected payment form
+                const method = tab.getAttribute('data-method');
+                document.getElementById(`${method}Form`).classList.add('active');
+            });
         });
         
-        modalBackBtn.addEventListener('click', () => {
-            reasonModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        // Complete payment button
+        const completePayment = document.getElementById('completePayment');
         
-        modalPayBtn.addEventListener('click', () => {
-            window.location.href = 'upi://pay?pa=9306018924@ybl&pn=Jatin%20&mc=0000&mode=02&purpose=00&am=699';
-        });
-        
-        // Close modal when clicking outside
-        reasonModal.addEventListener('click', (e) => {
-            if (e.target === reasonModal) {
-                reasonModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Add animation to payment button on modal open
-        reasonTrigger.addEventListener('mouseover', () => {
-            reasonTrigger.classList.add('animate__pulse');
-        });
-        
-        reasonTrigger.addEventListener('mouseout', () => {
-            reasonTrigger.classList.remove('animate__pulse');
+        completePayment.addEventListener('click', () => {
+            // Show success message
+            alert('Payment completed successfully! Your order is now being processed.');
+            
+            // In a real scenario, you would redirect to a success page
+            // window.location.href = 'success.html';
         });
     </script>
 </body>

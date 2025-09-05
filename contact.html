@@ -1,465 +1,862 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GK8LYVXD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GK8LYVXD6G');
+    </script>
+
+    <!-- SEO Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rao Developers - Contact Us</title>
+    <title>Contact Rao Developers | Get a Quote for Website & App Development</title>
+    <meta name="description" content="Contact Rao Developers for website development, app development, SEO, ads, and digital services. Get a quick quote now.">
+    <meta name="keywords" content="Contact Rao Developers, Web Development Enquiry, Website Company Haryana, App Development Quote">
+    <meta name="author" content="Rao Developers">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Contact Rao Developers | Get a Quote for Website & App Development">
+    <meta property="og:description" content="Professional web development and digital marketing company based in Rewari, Haryana. Contact us for a quote.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.raodevlopers.xyz/contact.html">
+    <meta property="og:image" content="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg">
+    <meta property="og:site_name" content="Rao Developers">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Rao Developers | Get a Quote">
+    <meta name="twitter:description" content="Professional web development and digital marketing company based in Rewari, Haryana.">
+    <meta name="twitter:image" content="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" type="image/jpeg">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6C63FF;
-            --secondary: #FF6584;
-            --dark: #2D3748;
-            --light: #F7FAFC;
-            --gradient: linear-gradient(45deg, #6C63FF, #FF6584);
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Rao Developers",
+        "description": "Contact page for Rao Developers web development and digital marketing services",
+        "url": "https://www.raodevlopers.xyz/contact.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "Rao Developers",
+            "telephone": "+91-94994-73347",
+            "email": "raodevlopers@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rewari",
+                "addressLocality": "Rewari",
+                "addressRegion": "Haryana",
+                "postalCode": "123401",
+                "addressCountry": "IN"
+            }
         }
-        
+    }
+    </script>
+
+    <style>
+        /* CSS Variables - iPhone-inspired theme */
+        :root {
+            --primary-blue: #007AFF;
+            --secondary-blue: #0056B3;
+            --accent-blue: #409CFF;
+            --dark-navy: #1C1C1E;
+            --darker-navy: #000000;
+            --light-bg: #F2F2F7;
+            --card-bg: #FFFFFF;
+            --text-dark: #1C1C1E;
+            --text-gray: #8E8E93;
+            --text-light: #FFFFFF;
+            --border-color: #C6C6C8;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #007AFF 0%, #0056B3 100%);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --card-radius: 14px;
+            --button-radius: 10px;
+            --navbar-height: 70px;
+        }
+
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            background: var(--light);
-            color: var(--dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
-        /* HEADER WITH ANIMATION */
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+        /* iOS-style Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: var(--navbar-height);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
         }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 8s infinite linear;
-        }
-        
-        @keyframes pulse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            position: relative;
-        }
-        
-        /* COMPANY STATS */
-        .stats {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .stats h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .stats p {
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
-        
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* FOUNDERS SECTION */
-        .founders {
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 3rem auto;
-            max-width: 1000px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
         }
-        
-        .founder {
-            background: white;
-            border-radius: 15px;
-            width: 300px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(0,0,0,0.05);
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
         }
-        
-        .founder:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
         }
-        
-        .founder img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            margin-bottom: 1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
         }
-        
-        .founder h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
         }
-        
-        .founder p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        /* CONTACT FORM */
-        .contact-form {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95rem;
         }
-        
-        .contact-form::before {
-            content: "";
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .mobile-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: var(--white);
+            overflow: hidden;
+            padding-top: var(--navbar-height);
+        }
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: var(--gradient);
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.05) 0%, transparent 60%);
         }
-        
-        .contact-form h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .contact-form p {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-        
-        .form-group {
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
             position: relative;
+            padding: 0 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 2.5rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-light {
+            background: var(--white);
+        }
+
+        .section-gray {
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+            max-width: 800px;
+            border: 0.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
-            position: absolute;
-            top: 12px;
-            left: 15px;
-            color: #999;
-            transition: all 0.3s;
-            pointer-events: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
         }
-        
-        .form-group input:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group textarea:focus + label,
-        .form-group textarea:not(:placeholder-shown) + label {
-            top: -10px;
-            left: 10px;
-            font-size: 0.8rem;
-            background: white;
-            padding: 0 5px;
-            color: var(--primary);
-        }
-        
+
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--text-dark);
+            font-family: inherit;
+            transition: all 0.3s ease;
             font-size: 1rem;
-            transition: all 0.3s;
         }
-        
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-gray);
+        }
+
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
             outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
         }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: var(--gradient);
-            color: white;
+
+        .btn {
+            padding: 1rem 2rem;
             border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 8px;
+            border-radius: var(--button-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: var(--shadow);
             width: 100%;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            justify-content: center;
         }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
-        
-        /* POPUP */
-        .overlay {
-            display: none;
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-        
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .neon-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--primary-blue), 0 0 10px var(--primary-blue); }
+            to { box-shadow: 0 0 15px var(--primary-blue), 0 0 30px var(--accent-blue); }
+        }
+
+        .loading-text {
+            color: white;
+            margin-top: 1rem;
+            font-weight: 500;
             text-align: center;
-            max-width: 400px;
-            width: 90%;
-            animation: fadeIn 0.5s;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-navy);
+            color: var(--text-light);
+            padding: 3rem 0 1rem;
         }
-        
-        .popup h3 {
-            color: var(--primary);
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.3rem;
         }
-        
-        .popup p {
+
+        .footer-section p {
+            color: var(--text-gray);
             margin-bottom: 1rem;
-            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
-        
-        .popup em {
-            color: var(--secondary);
-            font-weight: bold;
+
+        .footer-section ul {
+            list-style: none;
         }
-        
-        /* RESPONSIVE */
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .founders { flex-direction: column; align-items: center; }
-            .founder { width: 100%; max-width: 350px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: var(--shadow);
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero {
+                height: auto;
+                min-height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER WITH ANIMATION -->
-    <header>
-        <h1> Rao Developers Contact</h1>
-        <p>Get in touch with our team for your dream website!</p>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://i.ibb.co/Txc44K8B/Picsart-25-09-05-06-24-49-868.jpg" alt="Rao Developers Logo">
+                <span class="logo-text">Rao Developers</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <!-- COMPANY STATS -->
-    <div class="stats">
-        <h2> About Our Company</h2>
-        <p>Founded in <span class="highlight">2025</span>, One Website. Endless Possibilities. Start with Rao Developers</p>
-        <p>Successfully delivered <span class="highlight">50+ projects</span> worldwide!</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Get In Touch With Us</h1>
+            <p class="hero-subtitle">
+                Ready to start your project? Fill out the form below and we'll get back to you soon.
+            </p>
+        </div>
+    </section>
+
+       <!-- Contact Form Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <div class="divider"></div>
+                <h2>Request a Quote</h2>
+                <p>Tell us about your project and we'll provide a customized solution</p>
+            </div>
+            
+            <div class="contact-form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interested In *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Website Maintenance">Website Maintenance</option>
+                            <option value="App Development">App Development</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Ads Management">Ads Management</option>
+                            <option value="Logo/Poster Design">Logo/Poster Design</option>
+                            <option value="Social Media Handling">Social Media Handling</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message / Project Details *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="neon-spinner"></div>
+            <p class="loading-text">Sending your request...</p>
+        </div>
     </div>
 
-    <!-- FOUNDERS SECTION -->
-    <h2 style="text-align: center; color: var(--primary); margin-top: 2rem;"> Meet Our Ceo & Founders And Our Team</h2>
-    <div class="founders">
-        <div class="founder">
-            <img src="https://i.ibb.co/tMK6rKqt/Picsart-25-04-17-15-09-20-787-1.jpg" alt="Rao Jatin">
-            <h3>Rao Jatin</h3>
-            <p>Co-Founder & Devloper</p>
-            <p>4+ years in web development. Also a Great designer By passion.</p>
-            <div style="margin-top: 1remOne Website. Endless Possibilities. Start with Rao Developers
-                <i class="fab fa-whatsapp" style="color: #1DA1F2; margin: 0 5px;"></i>
-                <i class="fab fa-instagram" style="color: #0077B5; margin: 0 5px;"></i>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Rao Developers</h3>
+                    <p>
+                        Professional web development and digital marketing company based in Rewari, Haryana. 
+                        We help businesses establish and grow their online presence.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">App Development</a></li>
+                        <li><a href="#">SEO Work</a></li>
+                        <li><a href="#">Ads Management</a></li>
+                        <li><a href="#">Logo & Poster Design</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rao Developers. All Rights Reserved.</p>
             </div>
         </div>
-        <div class="founder">
-            <img src="https://i.ibb.co/XrQ9ZWRr/file-000000002ca061f8b1ee2b6249db7407-1.png" alt="Ravi Kalaliya">
-            <h3>Ravi Kalaliya</h3>
-            <p>Founder & CTO & financer</p>
-            <p>Expert in scalable solutions. Turns ideas into reality.</p>
-            <div style="margin-top: 1rem;">
-                <i class="fab fa-instagram" style="color: #1DA1F2; margin: 0 5px;"></i>
-                <i class="fab fa-whatsapp" style="color: #0077B5; margin: 0 5px;"></i>
-            </div>
-        </div>
-        <div class="founder">
-            <img src="https://i.ibb.co/PvGXQS7c/file-0000000019f861f8afeddf74c5109c8f.png" alt="Prasant Yaduvanshi">
-            <h3>Prasant Yaduvanshi</h3>
-            <p>Social Media Manager & Telecallar </p>
-            <p>Expert In typing and Well know in mass communication .</p>
-            <div style="margin-top: 1rem;">
-                <i class="fab fa-instagram" style="color: #1DA1F2; margin: 0 5px;"></i>
-                <i class="fab fa-" style="color: #0077B5; margin: 0 5px;"></i>
-            </div>
-        </div>
-    </div>
+    </footer>
 
-    <!-- CONTACT FORM -->
-    <div class="contact-form">
-        <h2>📩 Contact Us</h2>
-        <p>Fill the form below, and we'll get back to you soon!</p>
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
         
-        <form id="contactForm">
-            <div class="form-group">
-                <input type="text" id="name" placeholder=" " required>
-                <label for="name">Your Name</label>
-            </div>
-            
-            <div class="form-group">
-                <input type="tel" id="mobile" placeholder=" " required>
-                <label for="mobile">Mobile Number</label>
-            </div>
-            
-            <div class="form-group">
-                <input type="email" id="email" placeholder=" " required>
-                <label for="email">Email Address</label>
-            </div>
-            
-            <div class="form-group">
-                <select id="website-type" required>
-                    <option value="" disabled selected> </option>
-                    <option value="business">Business Website</option>
-                    <option value="ecommerce">E-commerce Store</option>
-                    <option value="portfolio">Portfolio Website</option>
-                    <option value="blog">Blog/News Website</option>
-                    <option value="custom">Custom Web App</option>
-                </select>
-                <label for="website-type" style="top: -10px; left: 10px; font-size: 0.8rem; background: white; padding: 0 5px;">What type of website?</label>
-            </div>
-            
-            <div class="form-group">
-                <textarea id="requirements" placeholder=" "></textarea>
-                <label for="requirements">Project Requirements</label>
-            </div>
-            
-            <button type="submit" class="submit-btn">Submit Request <i class="fas fa-paper-plane"></i></button>
-        </form>
-    </div>
-
-    <!-- POPUP -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <h3>🎉 Thank You!</h3>
-        <p>Your request has been sent to our team.</p>
-        <p>We'll contact you soon for confirmation.</p>
-        <p><em>~ Ravi Kalaliya</em></p>
-    </div>
-
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Get form values
-        const name = document.getElementById('name').value;
-        const mobile = document.getElementById('mobile').value;
-        const email = document.getElementById('email').value;
-        const websiteType = document.getElementById('website-type').value;
-        const requirements = document.getElementById('requirements').value;
-
-        // Format the message
-        const message = `
-📩 *New Contact Form Submission!*
-
-👤 *Name:* ${name}
-📱 *Mobile:* ${mobile}
-✉️ *Email:* ${email}
-🌐 *Website Type:* ${websiteType}
-📝 *Requirements:* ${requirements}
-        `;
-
-        // Telegram API details
-        const botToken = '8187433543:AAF4sxqnhCohX5WTl7c7CDSiuxfCMhH5_Yw';
-        const chatId = '5165964724';
-
-        // Send to Telegram
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'Markdown'
-            })
-        }).then(response => {
-            if (response.ok) {
-                // Show popup and overlay
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('popup').style.display = 'block';
-                document.getElementById('contactForm').reset();
-
-                setTimeout(() => {
-                    document.getElementById('overlay').style.display = 'none';
-                    document.getElementById('popup').style.display = 'none';
-                }, 7000);
-            } else {
-                alert('❌ Something went wrong. Please try again.');
-            }
-        }).catch(error => {
-            console.error('Telegram Error:', error);
-            alert('⚠️ Could not send data to Telegram.');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
         });
-    });
-</script>
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+                mobileToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Form validation
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const serviceInput = document.getElementById('service');
+            const messageInput = document.getElementById('message');
+            
+            if (nameInput.value.trim() === '') {
+                alert('Please enter your name');
+                nameInput.focus();
+                return;
+            }
+            
+            if (emailInput.value.trim() === '') {
+                alert('Please enter your email address');
+                emailInput.focus();
+                return;
+            }
+            
+            if (phoneInput.value.trim() === '') {
+                alert('Please enter your phone number');
+                phoneInput.focus();
+                return;
+            }
+            
+            if (serviceInput.value === '') {
+                alert('Please select a service');
+                serviceInput.focus();
+                return;
+            }
+            
+            if (messageInput.value.trim() === '') {
+                alert('Please enter your message');
+                messageInput.focus();
+                return;
+            }
+            
+            // Show loading animation
+            loadingOverlay.classList.add('active');
+            
+            try {
+                // Prepare data for Telegram
+                const formData = {
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    service: serviceInput.value,
+                    message: messageInput.value.trim()
+                };
+                
+                // Format message for Telegram
+                const telegramMessage = `
+New Contact Form Submission:
+                
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service: ${formData.service}
+Message: ${formData.message}
+                
+Time: ${new Date().toLocaleString()}
+                `;
+                
+                // Send to Telegram bot
+                const botToken = '8311976506:AAHCMdrwWzHbKYPVxItoiRXFg0hvppS_26c';
+                const chatId = '5165964724';
+                
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: telegramMessage,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                if (response.ok) {
+                    // Redirect to buy.html with query parameters
+                    const queryParams = new URLSearchParams(formData).toString();
+                    window.location.href = `buy.html?${queryParams}`;
+                } else {
+                    throw new Error('Failed to send message to Telegram');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            } finally {
+                loadingOverlay.classList.remove('active');
+            }
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                navbar.style.padding = '0.5rem 0';
+                navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '0.8rem 0';
+                navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+            }
+        });
+    </script>
 </body>
 </html>
