@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rao Developers | Demo Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --card-bg-color: #ffffff;
+            --text-color: #343a40;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Category Filters */
+        #category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+        .filter-btn {
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+
+        /* Project Grid */
+        #project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Project Card Styling */
+        .project-card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .project-card.hide {
+            display: none;
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .category-tag {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            align-self: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        .category-tag .fa-tag {
+            margin-right: 0.3rem;
+        }
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+        .live-check-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .live-check-btn:hover {
+            background-color: #0056b3;
+        }
+        .live-check-btn .fa-external-link-alt {
+            margin-left: 0.5rem;
+        }
+        
+        /* Loading Spinner */
+        .loader {
+            border: 5px solid var(--light-gray);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 5rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            #project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Our Demo Projects</h1>
+            <p>Explore a selection of our recent work. Use the filters to find projects by category.</p>
+        </header>
+
+        <div id="category-filters">
+            </div>
+
+        <div id="project-grid">
+            <div class="loader" id="loader"></div>
+            </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+        // --- 1. FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKAu9JvYmpQNvH1ES_Ax3q6qUFZX061Rw",
+            authDomain: "raosuplode.firebaseapp.com",
+            databaseURL: "https://raosuplode-default-rtdb.firebaseio.com",
+            projectId: "raosuplode",
+            storageBucket: "raosuplode.appspot.com",
+            messagingSenderId: "275156697009",
+            appId: "1:275156697009:web:988cc8dc82f59e0535c790"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // --- 2. DOM ELEMENT REFERENCES ---
+        const categoryFiltersContainer = document.getElementById('category-filters');
+        const projectGrid = document.getElementById('project-grid');
+        const loader = document.getElementById('loader');
+
+        // --- 3. FETCH AND DISPLAY DATA ---
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCategories();
+            fetchProjects();
+        });
+
+        /**
+         * Fetches categories from Firebase and populates the filter buttons.
+         */
+        function fetchCategories() {
+            const categoriesRef = database.ref('categories');
+            categoriesRef.on('value', (snapshot) => {
+                const categories = snapshot.val();
+                categoryFiltersContainer.innerHTML = ''; // Clear existing filters
+
+                // Add 'All' button
+                const allButton = createFilterButton('All', true);
+                categoryFiltersContainer.appendChild(allButton);
+                
+                if (categories) {
+                    Object.values(categories).forEach(cat => {
+                       const categoryButton = createFilterButton(cat.name);
+                       categoryFiltersContainer.appendChild(categoryButton);
+                    });
+                }
+            });
+        }
+        
+        /**
+         * Fetches projects from Firebase and displays them as cards.
+         */
+        function fetchProjects() {
+            const projectsRef = database.ref('projects');
+            projectsRef.on('value', (snapshot) => {
+                projectGrid.innerHTML = ''; // Clear existing projects
+                const projects = snapshot.val();
+                
+                if (projects) {
+                    Object.values(projects).forEach((project, index) => {
+                        const card = createProjectCard(project);
+                        card.style.animationDelay = `${index * 100}ms`; // Staggered animation
+                        projectGrid.appendChild(card);
+                    });
+                } else {
+                    projectGrid.innerHTML = '<p>No projects found.</p>';
+                }
+                loader.style.display = 'none';
+            });
+        }
+        
+        // --- 4. HELPER FUNCTIONS ---
+
+        /**
+         * Creates a single filter button element.
+         * @param {string} categoryName - The name of the category.
+         * @param {boolean} isActive - Whether the button should be active by default.
+         * @returns {HTMLButtonElement} The created button element.
+         */
+        function createFilterButton(categoryName, isActive = false) {
+            const button = document.createElement('button');
+            button.className = `filter-btn ${isActive ? 'active' : ''}`;
+            button.textContent = categoryName;
+            button.setAttribute('data-category', categoryName);
+
+            button.addEventListener('click', () => {
+                // Handle active state
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter projects
+                filterProjects(categoryName);
+            });
+            return button;
+        }
+
+        /**
+         * Creates a single project card element.
+         * @param {object} projectData - The project data object from Firebase.
+         * @returns {HTMLDivElement} The created card element.
+         */
+        function createProjectCard(projectData) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.setAttribute('data-category', projectData.category);
+
+            card.innerHTML = `
+                <img src="${projectData.imageUrl}" alt="${projectData.name}" class="project-image">
+                <div class="card-content">
+                    <span class="category-tag"><i class="fas fa-tag"></i> ${projectData.category}</span>
+                    <h3>${projectData.name}</h3>
+                    <p>${projectData.description}</p>
+                    <a href="${projectData.liveDemoLink}" target="_blank" rel="noopener noreferrer" class="live-check-btn">
+                        Live Check <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            `;
+            return card;
+        }
+        
+        /**
+         * Filters the displayed project cards based on the selected category.
+         * @param {string} category - The category to filter by ('All' shows all).
+         */
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'All' || cardCategory === category) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

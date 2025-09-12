@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Rao Developers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #007bff;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --background-color: #f4f7f6;
+            --card-bg-color: #ffffff;
+            --text-color: #333;
+            --light-gray: #dee2e6;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        h1, h2 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        /* Layout */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Card / Section Styling */
+        .card {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success {
+            background-color: var(--success-color);
+            color: #fff;
+        }
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+        .btn-edit {
+            color: var(--primary-color);
+        }
+        .btn-delete {
+            color: var(--danger-color);
+        }
+        
+        /* Lists */
+        .data-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .data-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .data-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            color: #fff;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast.success { background-color: var(--success-color); }
+        .toast.error { background-color: var(--danger-color); }
+        
+        /* Spinner */
+        .spinner {
+            display: none;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        .btn.loading .spinner {
+            display: inline-block;
+        }
+        .btn.loading span {
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-cogs"></i> Admin Panel</h1>
+
+        <div class="admin-layout">
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> Manage Projects</h2>
+                <form id="project-form">
+                    <input type="hidden" id="projectId">
+                    <div class="form-group">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" id="projectName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDesc">Short Description</label>
+                        <textarea id="projectDesc" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectCategory">Category</label>
+                        <select id="projectCategory" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectImage">Image</label>
+                        <input type="file" id="projectImage" class="form-control" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectLink">Live Demo URL</label>
+                        <input type="url" id="projectLink" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="projectSubmitBtn">
+                        <span>Save Project</span>
+                        <div class="spinner"></div>
+                    </button>
+                    <button type="button" class="btn" id="projectCancelBtn" style="display: none;">Cancel Edit</button>
+                </form>
+                <hr style="margin: 2rem 0; border: 1px solid var(--background-color);">
+                <h3>Existing Projects</h3>
+                <ul id="projects-list" class="data-list"></ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-tags"></i> Manage Categories</h2>
+                <form id="category-form">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" id="categoryName" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Category</button>
+                     <button type="button" class="btn" id="categoryCancelBtn" style="display: none;">Cancel Edit</button>
+                </form>
+                <hr style="margin: 2rem 0; border: 1px solid var(--background-color);">
+                <h3>Existing Categories</h3>
+                <ul id="categories-list" class="data-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKAu9JvYmpQNvH1ES_Ax3q6qUFZX061Rw",
+            authDomain: "raosuplode.firebaseapp.com",
+            databaseURL: "https://raosuplode-default-rtdb.firebaseio.com",
+            projectId: "raosuplode",
+            storageBucket: "raosuplode.appspot.com",
+            messagingSenderId: "275156697009",
+            appId: "1:275156697009:web:988cc8dc82f59e0535c790"
+        };
+        const IMGBB_API_KEY = 'f31247f51f07c7e6fdf325abaed8e58c';
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // --- 2. DOM ELEMENT REFERENCES ---
+        // Category elements
+        const categoryForm = document.getElementById('category-form');
+        const categoryIdInput = document.getElementById('categoryId');
+        const categoryNameInput = document.getElementById('categoryName');
+        const categoriesList = document.getElementById('categories-list');
+        const categoryCancelBtn = document.getElementById('categoryCancelBtn');
+
+        // Project elements
+        const projectForm = document.getElementById('project-form');
+        const projectIdInput = document.getElementById('projectId');
+        const projectNameInput = document.getElementById('projectName');
+        const projectDescInput = document.getElementById('projectDesc');
+        const projectCategorySelect = document.getElementById('projectCategory');
+        const projectImageInput = document.getElementById('projectImage');
+        const projectLinkInput = document.getElementById('projectLink');
+        const projectSubmitBtn = document.getElementById('projectSubmitBtn');
+        const projectCancelBtn = document.getElementById('projectCancelBtn');
+        const projectsList = document.getElementById('projects-list');
+
+        // Toast
+        const toast = document.getElementById('toast');
+
+        // --- 3. CATEGORY MANAGEMENT ---
+        
+        // Handle Category Form Submission (Add/Update)
+        categoryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const categoryName = categoryNameInput.value.trim();
+            const categoryId = categoryIdInput.value;
+            if (!categoryName) return;
+
+            if (categoryId) {
+                // Update existing category
+                database.ref('categories/' + categoryId).update({ name: categoryName })
+                    .then(() => {
+                        showToast('Category updated successfully!', 'success');
+                        resetCategoryForm();
+                    })
+                    .catch(error => showToast('Error: ' + error.message, 'error'));
+            } else {
+                // Add new category
+                database.ref('categories').push({ name: categoryName })
+                    .then(() => {
+                        showToast('Category added successfully!', 'success');
+                        categoryForm.reset();
+                    })
+                    .catch(error => showToast('Error: ' + error.message, 'error'));
+            }
+        });
+
+        // Fetch and display categories
+        database.ref('categories').on('value', (snapshot) => {
+            categoriesList.innerHTML = '';
+            projectCategorySelect.innerHTML = '<option value="">Select a category</option>';
+            const categories = snapshot.val();
+            if (categories) {
+                Object.entries(categories).forEach(([key, value]) => {
+                    // Populate category list for management
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span>${value.name}</span>
+                        <div>
+                            <button class="btn-icon btn-edit" onclick="editCategory('${key}', '${value.name}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon btn-delete" onclick="deleteCategory('${key}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    categoriesList.appendChild(li);
+
+                    // Populate category dropdown in project form
+                    const option = document.createElement('option');
+                    option.value = value.name;
+                    option.textContent = value.name;
+                    projectCategorySelect.appendChild(option);
+                });
+            }
+        });
+
+        // Edit Category
+        window.editCategory = (key, name) => {
+            categoryIdInput.value = key;
+            categoryNameInput.value = name;
+            categoryCancelBtn.style.display = 'inline-block';
+            categoryNameInput.focus();
+        };
+
+        // Delete Category
+        window.deleteCategory = (key) => {
+            if (confirm('Are you sure you want to delete this category?')) {
+                database.ref('categories/' + key).remove()
+                    .then(() => showToast('Category deleted.', 'success'))
+                    .catch(error => showToast('Error: ' + error.message, 'error'));
+            }
+        };
+
+        // Reset Category Form
+        function resetCategoryForm() {
+            categoryForm.reset();
+            categoryIdInput.value = '';
+            categoryCancelBtn.style.display = 'none';
+        }
+        categoryCancelBtn.addEventListener('click', resetCategoryForm);
+        
+        // --- 4. PROJECT MANAGEMENT ---
+
+        // Handle Project Form Submission (Add/Update)
+        projectForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const projectId = projectIdInput.value;
+            const imageFile = projectImageInput.files[0];
+            
+            // Validation for new project
+            if (!projectId && !imageFile) {
+                showToast('Please select an image for a new project.', 'error');
+                return;
+            }
+
+            setLoading(true);
+            try {
+                let imageUrl = document.querySelector(`li[data-id="${projectId}"]`)?.dataset.imageUrl || null;
+                if (imageFile) {
+                    imageUrl = await uploadImageToImgbb(imageFile);
+                }
+                
+                const projectData = {
+                    name: projectNameInput.value,
+                    description: projectDescInput.value,
+                    category: projectCategorySelect.value,
+                    liveDemoLink: projectLinkInput.value,
+                    imageUrl: imageUrl,
+                };
+                
+                if (projectId) {
+                    // Update project
+                    await database.ref('projects/' + projectId).update(projectData);
+                    showToast('Project updated successfully!', 'success');
+                } else {
+                    // Add new project
+                    await database.ref('projects').push(projectData);
+                    showToast('Project added successfully!', 'success');
+                }
+                resetProjectForm();
+            } catch (error) {
+                showToast('Operation failed: ' + error.message, 'error');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        // Upload image to Imgbb
+        async function uploadImageToImgbb(imageFile) {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+
+            const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                method: 'POST',
+                body: formData,
+            });
+            const result = await response.json();
+            if (result.success) {
+                return result.data.url;
+            } else {
+                throw new Error(result.error.message);
+            }
+        }
+        
+        // Fetch and display projects
+        database.ref('projects').on('value', (snapshot) => {
+            projectsList.innerHTML = '';
+            const projects = snapshot.val();
+            if (projects) {
+                Object.entries(projects).forEach(([key, value]) => {
+                    const li = document.createElement('li');
+                    li.dataset.id = key; // Store id and imageUrl for editing
+                    li.dataset.imageUrl = value.imageUrl;
+                    li.innerHTML = `
+                        <span>${value.name} <small style="color: #6c757d;">(${value.category})</small></span>
+                        <div>
+                            <button class="btn-icon btn-edit" onclick="editProject('${key}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon btn-delete" onclick="deleteProject('${key}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    projectsList.appendChild(li);
+                });
+            }
+        });
+
+        // Edit Project
+        window.editProject = (key) => {
+            const projectRef = database.ref('projects/' + key);
+            projectRef.once('value', (snapshot) => {
+                const project = snapshot.val();
+                projectIdInput.value = key;
+                projectNameInput.value = project.name;
+                projectDescInput.value = project.description;
+                projectCategorySelect.value = project.category;
+                projectLinkInput.value = project.liveDemoLink;
+                // Image input is not pre-filled for security reasons. User must re-select if they want to change it.
+                
+                projectCancelBtn.style.display = 'inline-block';
+                projectNameInput.focus();
+            });
+        };
+
+        // Delete Project
+        window.deleteProject = (key) => {
+            if (confirm('Are you sure you want to delete this project?')) {
+                database.ref('projects/' + key).remove()
+                    .then(() => showToast('Project deleted.', 'success'))
+                    .catch(error => showToast('Error: ' + error.message, 'error'));
+            }
+        };
+
+        // Reset Project Form
+        function resetProjectForm() {
+            projectForm.reset();
+            projectIdInput.value = '';
+            projectCancelBtn.style.display = 'none';
+        }
+        projectCancelBtn.addEventListener('click', resetProjectForm);
+
+        // --- 5. UI UTILITIES ---
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+
+        // Set loading state on submit button
+        function setLoading(isLoading) {
+            if (isLoading) {
+                projectSubmitBtn.classList.add('loading');
+                projectSubmitBtn.disabled = true;
+            } else {
+                projectSubmitBtn.classList.remove('loading');
+                projectSubmitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
