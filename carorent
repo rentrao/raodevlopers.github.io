@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carorent - Premium Self-Drive Car Rentals in Gurgaon</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Carorent offers premium self-drive car rentals in Gurgaon, starting at ₹100/hour. Book clean, insured cars by the hour or day. Your journey, your way.">
+    <meta name="keywords" content="self-drive cars gurgaon, car rental gurgaon, carorent, rent a car, self drive car rental">
+    <meta name="author" content="Carorent">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://carorent.example.com/">
+    <meta property="og:title" content="Carorent - Premium Self-Drive Car Rentals in Gurgaon">
+    <meta property="og:description" content="Book by the hour or day. Clean, insured cars. Deposit refunded in 24 hours. T&C apply.">
+    <meta property="og:image" content="https://placehold.co/1200x630/23A455/FFFFFF?text=Carorent">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://carorent.example.com/">
+    <meta property="twitter:title" content="Carorent - Premium Self-Drive Car Rentals in Gurgaon">
+    <meta property="twitter:description" content="Book by the hour or day. Clean, insured cars. Deposit refunded in 24 hours. T&C apply.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/23A455/FFFFFF?text=Carorent">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Flatpickr (Date Picker) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom Styles and Tailwind Config -->
+    <style>
+        /* Custom CSS variables for brand colors */
+        :root {
+            --carorent-green: #23A455;
+            --carorent-dark: #1a7a42;
+            --ink: #0F172A;
+            --accent-blue: #2563EB;
+        }
+
+        /* Applying custom font */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+        }
+
+        /* Enhanced animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(35, 164, 85, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(35, 164, 85, 0.6); }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .slide-in-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .fade-in-scale {
+            animation: fadeInScale 0.5s ease-out;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Enhanced hover effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        /* Gradient backgrounds */
+        .gradient-bg {
+            background: linear-gradient(135deg, #23A455 0%, #1a7a42 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #23A455 0%, #1a7a42 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--carorent-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--carorent-dark);
+        }
+
+        /* Component styles */
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .mobile-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            backdrop-filter: blur(20px);
+        }
+
+        /* Loading animation */
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Enhanced card styles */
+        .car-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: var(--carorent-green);
+        }
+
+        /* Focus states for accessibility */
+        .focusable:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        /* Responsive text sizes */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+        }
+
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'carorent': {
+                          50: '#f0fdf4',
+                          100: '#dcfce7',
+                          200: '#bbf7d0',
+                          300: '#86efac',
+                          400: '#4ade80',
+                          500: '#23A455',
+                          600: '#16a34a',
+                          700: '#15803d',
+                          800: '#166534',
+                          900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'slide-in-up': 'slideInUp 0.6s ease-out',
+                        'fade-in-scale': 'fadeInScale 0.5s ease-out',
+                        'shimmer': 'shimmer 1.5s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-inter">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-accent-blue focus:text-white">Skip to main content</a>
+
+    <!-- Top Announcement Strip -->
+    <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white text-center p-3 text-sm md:text-base relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+        <div class="relative z-10">
+            🚗 Starting ₹1800/day - Book on WhatsApp 
+            <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20book%20a%20self-drive%20car." target="_blank" class="font-bold hover:underline focusable rounded ml-2 text-green-400">
+                +91 8901663844
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="main-header" class="bg-white/90 backdrop-blur-xl border-b border-slate-200/50 sticky-header">
+        <nav class="container mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" data-page="home" class="text-3xl font-black gradient-text focusable rounded hover-scale">
+                Carorent
+            </a>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="#" data-page="cars" class="text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Cars</a>
+                <a href="#" data-page="packages" class="text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Packages</a>
+                <a href="#" data-page="partner" class="text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Partner with Us</a>
+                <a href="#" data-page="faq" class="text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">FAQs</a>
+                <a href="#" data-page="contact" class="text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Contact</a>
+            </div>
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20book%20a%20self-drive%20car." target="_blank" class="bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold flex items-center space-x-2 hover:bg-opacity-90 transition-all hover-lift focusable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="tel:+918901663844" class="bg-slate-100 text-slate-800 px-6 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all hover-lift focusable">Call Now</a>
+            </div>
+            <button id="mobile-menu-btn" class="lg:hidden focusable rounded-xl p-2 hover:bg-slate-100 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4 bg-white/95 backdrop-blur-xl border-t border-slate-200/50">
+            <a href="#" data-page="cars" class="block py-3 text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Cars</a>
+            <a href="#" data-page="packages" class="block py-3 text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Packages</a>
+            <a href="#" data-page="partner" class="block py-3 text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Partner with Us</a>
+            <a href="#" data-page="faq" class="block py-3 text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">FAQs</a>
+            <a href="#" data-page="contact" class="block py-3 text-slate-700 hover:text-carorent-500 font-medium transition-colors focusable rounded">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content"></main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+        <div class="container mx-auto px-4 lg:px-8 py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- About -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-3xl font-black gradient-text mb-4">Carorent</h3>
+                    <p class="text-slate-300 leading-relaxed">Your Journey, Your Way. Premium self-drive car rentals in Gurgaon with transparent pricing and 24/7 support.</p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://instagram.com/carorent_" target="_blank" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded-lg p-2 hover:bg-white/10">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                           </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Quick Links -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="font-bold text-xl mb-6 text-carorent-400">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" data-page="cars" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">All Cars</a></li>
+                        <li><a href="#" data-page="packages" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">Packages & Offers</a></li>
+                        <li><a href="#" data-page="faq" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">FAQs</a></li>
+                        <li><a href="#" data-page="about" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">About Us</a></li>
+                    </ul>
+                </div>
+                <!-- Policies -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="font-bold text-xl mb-6 text-carorent-400">Policies</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" data-page="terms" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">Terms & Conditions</a></li>
+                        <li><a href="#" data-page="privacy" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">Privacy Policy</a></li>
+                        <li><a href="#" data-page="cancellation" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">Cancellation Policy</a></li>
+                        <li><a href="#" data-page="damage" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">Damage Policy</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="font-bold text-xl mb-6 text-carorent-400">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0 text-carorent-400">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span class="text-slate-300 text-sm">Pickup: New Colony, Sector 7 & Sector 15, Gurgaon</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-carorent-400">
+                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                 <polyline points="22,6 12,13 2,6"></polyline>
+                             </svg>
+                            <a href="mailto:carorentgn@gmail.com" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">carorentgn@gmail.com</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-carorent-400">
+                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                             </svg>
+                            <a href="tel:+918901663844" class="text-slate-300 hover:text-carorent-400 transition-colors focusable rounded">+91 8901663844</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Powered by RAO Developers -->
+            <div class="mt-12 pt-8 border-t border-slate-700">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-center md:text-left">
+                        <p class="text-slate-400 text-sm">
+                            &copy; <span id="current-year"></span> Carorent. All Rights Reserved. T&C Apply.
+                        </p>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-slate-400 text-sm">
+                            Powered by 
+                            <a href="https://raodevlopers.xyz" target="_blank" class="text-carorent-400 hover:text-carorent-300 font-semibold transition-colors focusable rounded">
+                                RAO Developers
+                            </a>
+                        </p>
+                        <p class="text-slate-500 text-xs mt-1">A Website Development Company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20book%20a%20self-drive%20car." target="_blank" class="floating-whatsapp bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all pulse-glow focusable" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63z"/>
+        </svg>
+    </a>
+    
+    <!-- Mobile Sticky CTA Bar -->
+    <div class="lg:hidden mobile-cta-bar bg-white/95 backdrop-blur-xl p-3 border-t border-slate-200/50 grid grid-cols-2 gap-3">
+         <a href="tel:+918901663844" class="bg-slate-100 text-slate-800 px-4 py-3 rounded-xl font-bold text-center hover:bg-slate-200 transition-all focusable">
+            📞 Call Now
+        </a>
+        <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20book%20a%20self-drive%20car." target="_blank" class="gradient-bg text-white px-4 py-3 rounded-xl font-bold text-center hover:opacity-90 transition-all focusable">
+            💬 Book Now
+        </a>
+    </div>
+    <!-- Page Templates -->
+    <template id="home-page-template">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-carorent-50">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+            <div class="container mx-auto px-4 lg:px-8 py-20 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                        <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-tight mb-6">
+                            Premium Self-Drive Cars in 
+                            <span class="gradient-text">Gurgaon</span>
+                        </h1>
+                        <p class="text-xl text-slate-600 mb-8 leading-relaxed">Book by the hour or day. Clean, insured cars. Deposit refunded in 24 hours. Your journey starts here.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20book%20a%20self-drive%20car." target="_blank" class="gradient-bg text-white px-8 py-4 rounded-2xl font-bold text-lg hover:opacity-90 transition-all hover-lift focusable pulse-glow">
+                                🚗 Book on WhatsApp
+                            </a>
+                            <a href="#" data-page="cars" class="bg-white text-slate-800 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all hover-lift focusable border-2 border-slate-200">
+                                🔍 View Cars
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="relative float-animation">
+                            <img src="https://placehold.co/600x400/E2E8F0/475569?text=Premium+Cars" alt="Premium rental cars available at Carorent" class="rounded-3xl shadow-2xl">
+                            <div class="absolute -top-4 -right-4 bg-carorent-500 text-white p-4 rounded-2xl shadow-xl">
+                                <p class="font-bold text-lg">Starting at</p>
+                                <p class="text-2xl font-black">₹100/hr</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center hover-lift" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-gradient-to-br from-carorent-100 to-carorent-200 text-carorent-600 rounded-3xl p-6 mb-4 mx-auto w-20 h-20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                             </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">RC & Insurance</h3>
+                        <p class="text-sm text-slate-500 mt-2">All cars fully compliant</p>
+                    </div>
+                    <div class="text-center hover-lift" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-gradient-to-br from-carorent-100 to-carorent-200 text-carorent-600 rounded-3xl p-6 mb-4 mx-auto w-20 h-20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 12V8H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v4"/>
+                                <path d="M4 12v8h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-1"/>
+                                <path d="M12 12v.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">24h Deposit Refund</h3>
+                        <p class="text-sm text-slate-500 mt-2">Quick & hassle-free</p>
+                    </div>
+                    <div class="text-center hover-lift" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-to-br from-carorent-100 to-carorent-200 text-carorent-600 rounded-3xl p-6 mb-4 mx-auto w-20 h-20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.82 2.18 2 9.25a2 2 0 0 0-.58 1.42V20a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2V10.67a2 2 0 0 0-.58-1.42L14.18 2.18a2 2 0 0 0-2.81 0zM12 22V9"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Cleaned & Sanitized</h3>
+                        <p class="text-sm text-slate-500 mt-2">Your safety is our priority</p>
+                    </div>
+                    <div class="text-center hover-lift" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-gradient-to-br from-carorent-100 to-carorent-200 text-carorent-600 rounded-3xl p-6 mb-4 mx-auto w-20 h-20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                 <path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z"/>
+                                 <path d="M3 13.6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4.2Z"/>
+                                 <path d="m 6 18 1 1 1-1"/>
+                                 <path d="m 17 18 1 1 1-1"/>
+                                 <path d="M8 7V5h8v2"/>
+                             </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Verified License</h3>
+                        <p class="text-sm text-slate-500 mt-2">Valid DL required</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Search -->
+        <section class="py-20 bg-gradient-to-br from-slate-50 to-carorent-50">
+             <div class="container mx-auto px-4 lg:px-8">
+                <div class="max-w-5xl mx-auto" data-aos="fade-up">
+                    <div class="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/20">
+                        <h2 class="text-3xl font-bold text-center mb-8 gradient-text">Quick Booking</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="pickup-point" class="block text-sm font-semibold text-slate-700 mb-2">Pickup Point</label>
+                                <select id="pickup-point" class="w-full px-4 py-3 text-base border-2 border-slate-200 focus:border-carorent-500 focus:ring-2 focus:ring-carorent-200 rounded-xl transition-all focusable">
+                                    <option>Sector 7, New Colony</option>
+                                    <option>Sector 15</option>
+                                    <option>Home Delivery (Charges Apply)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date-range" class="block text-sm font-semibold text-slate-700 mb-2">Start & End Date</label>
+                                <input id="date-range" class="w-full px-4 py-3 text-base border-2 border-slate-200 focus:border-carorent-500 focus:ring-2 focus:ring-carorent-200 rounded-xl transition-all focusable" placeholder="Select dates...">
+                            </div>
+                            <div class="md:col-span-3 lg:col-span-1 flex items-end">
+                                 <button class="gradient-bg text-white w-full py-3 rounded-xl font-bold text-lg hover:opacity-90 transition-all hover-lift focusable">
+                                     🔍 Search Cars
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Offers Band -->
+        <section class="py-20">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="gradient-bg text-white p-10 rounded-3xl shadow-2xl text-center hover-lift" data-aos="fade-right">
+                        <div class="text-6xl font-black mb-4">₹100</div>
+                        <h3 class="text-2xl font-bold mb-2">Per Hour Starting</h3>
+                        <p class="opacity-90">Perfect for quick trips and errands around the city.</p>
+                        <p class="text-xs mt-4 opacity-70">T&C Apply</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-10 rounded-3xl shadow-2xl text-center hover-lift" data-aos="fade-left">
+                        <div class="text-6xl font-black mb-4">₹1800</div>
+                        <h3 class="text-2xl font-bold mb-2">Per Day</h3>
+                        <p class="font-semibold opacity-90">Unlimited Kilometres (on selected cars)</p>
+                        <p class="text-xs mt-4 opacity-70">T&C Apply</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Cars -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">Our Most Popular Cars</h2>
+                    <p class="text-xl text-slate-600">Handpicked for your comfort and style.</p>
+                </div>
+                <div id="featured-cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Car cards will be injected here by JavaScript -->
+                </div>
+                <div class="text-center mt-16" data-aos="fade-up">
+                     <a href="#" data-page="cars" class="gradient-bg text-white px-10 py-4 rounded-2xl font-bold text-xl hover:opacity-90 transition-all hover-lift focusable">
+                         View All Cars →
+                     </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Packages Preview -->
+        <section class="py-20 bg-gradient-to-br from-slate-50 to-carorent-50">
+             <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">Special Packages</h2>
+                    <p class="text-xl text-slate-600">Curated trips and deals for your next getaway.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover-lift" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://placehold.co/600x300/F1F5F9/475569?text=Vrindavan+Trip" alt="Vrindavan" class="w-full h-56 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-2">Gurgaon to Vrindavan</h3>
+                            <p class="text-4xl font-black gradient-text mb-2">₹3200 only</p>
+                            <p class="text-slate-500">All inclusive round trip</p>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover-lift" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://placehold.co/600x300/F1F5F9/475569?text=Weekend+Deal" alt="Weekend Deal" class="w-full h-56 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-2">Weekend Pack 30% Off</h3>
+                            <p class="text-4xl font-black gradient-text mb-2">Drive More, Save More</p>
+                            <p class="text-slate-500">Friday to Sunday bookings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12" data-aos="fade-up">
+                     <a href="#" data-page="packages" class="text-slate-600 font-bold hover:text-carorent-500 transition-colors focusable rounded text-lg">
+                         Explore All Packages →
+                     </a>
+                </div>
+             </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">What Our Customers Say</h2>
+                    <p class="text-xl text-slate-600">Real experiences from real customers</p>
+                </div>
+                <div class="max-w-4xl mx-auto relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div id="testimonial-slider" class="testimonial-slider">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide p-4">
+                            <div class="bg-gradient-to-br from-slate-50 to-carorent-50 p-10 rounded-3xl text-center shadow-xl">
+                                <div class="text-6xl mb-6">⭐⭐⭐⭐⭐</div>
+                                <p class="text-slate-600 italic text-lg leading-relaxed mb-6">"Amazing experience with Carorent! The car was spotless and the booking process was super smooth. The 24-hour deposit refund is a game changer."</p>
+                                <h4 class="font-bold text-xl text-slate-800">Ankit S.</h4>
+                                <p class="text-sm text-slate-500">Gurgaon</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide p-4">
+                            <div class="bg-gradient-to-br from-slate-50 to-carorent-50 p-10 rounded-3xl text-center shadow-xl">
+                                <div class="text-6xl mb-6">⭐⭐⭐⭐⭐</div>
+                                <p class="text-slate-600 italic text-lg leading-relaxed mb-6">"Rented a car for a weekend trip. The unlimited km plan was perfect. Highly recommend Carorent for their professional service and great cars."</p>
+                                <h4 class="font-bold text-xl text-slate-800">Priya M.</h4>
+                                <p class="text-sm text-slate-500">Gurgaon</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide p-4">
+                            <div class="bg-gradient-to-br from-slate-50 to-carorent-50 p-10 rounded-3xl text-center shadow-xl">
+                                <div class="text-6xl mb-6">⭐⭐⭐⭐⭐</div>
+                                <p class="text-slate-600 italic text-lg leading-relaxed mb-6">"Best self-drive service in Gurgaon. The staff was helpful and the car (a Tata Punch) was in excellent condition. Will definitely use them again."</p>
+                                <h4 class="font-bold text-xl text-slate-800">Rohan V.</h4>
+                                <p class="text-sm text-slate-500">Gurgaon</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-8 space-x-3">
+                        <button class="testimonial-dot bg-carorent-500 w-4 h-4 rounded-full transition-all focusable"></button>
+                        <button class="testimonial-dot bg-slate-300 w-4 h-4 rounded-full transition-all focusable"></button>
+                        <button class="testimonial-dot bg-slate-300 w-4 h-4 rounded-full transition-all focusable"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner CTA -->
+        <section class="py-20 gradient-bg relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div class="container mx-auto px-4 lg:px-8 text-center text-white relative z-10" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">Attach your car & earn with us!</h2>
+                <p class="text-xl opacity-90 mb-10">Onboard in 24 hours and start earning a steady income.</p>
+                <a href="#" data-page="partner" class="bg-white text-carorent-600 px-10 py-4 rounded-2xl font-bold text-xl hover:bg-slate-100 transition-all hover-lift focusable">
+                    🤝 Become a Partner
+                </a>
+            </div>
+        </section>
+    </template>
+    
+    <template id="cars-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">Our Premium Fleet</h1>
+                <p class="text-xl text-slate-600">Choose from our wide range of well-maintained vehicles</p>
+            </div>
+            <div class="grid lg:grid-cols-4 gap-8">
+                <!-- Filters -->
+                <aside class="lg:col-span-1" data-aos="fade-right">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 sticky top-24">
+                        <h2 class="text-2xl font-bold mb-6 gradient-text">Filters</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-semibold text-slate-700 mb-3">Price Range</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-carorent-500 focus:ring-carorent-500">
+                                        <span class="ml-2 text-sm">₹2000 - ₹3000</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-carorent-500 focus:ring-carorent-500">
+                                        <span class="ml-2 text-sm">₹3000 - ₹4000</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-700 mb-3">Transmission</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-carorent-500 focus:ring-carorent-500">
+                                        <span class="ml-2 text-sm">Manual</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-carorent-500 focus:ring-carorent-500">
+                                        <span class="ml-2 text-sm">Automatic</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Car Grid -->
+                <div class="lg:col-span-3">
+                    <div id="cars-page-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Car cards will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="packages-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">Packages & Deals</h1>
+                <p class="text-xl text-slate-600">Special offers for your planned and unplanned trips.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 hover-lift" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://placehold.co/600x300/F1F5F9/475569?text=Vrindavan+Trip" alt="Vrindavan" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Gurgaon → Vrindavan</h3>
+                        <p class="text-4xl font-black gradient-text mb-4">₹3200 only</p>
+                        <div class="text-sm text-slate-600 space-y-2 mb-6">
+                           <p><strong>What's Included:</strong> All tolls, taxes, and a 12-hour rental period.</p>
+                           <p><strong>Fine Print:</strong> Extra hours are chargeable. Fuel not included.</p>
+                        </div>
+                        <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I'm%20interested%20in%20the%20Vrindavan%20package." target="_blank" class="block w-full text-center gradient-bg text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-all focusable">
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 hover-lift" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/600x300/F1F5F9/475569?text=Airport+Run" alt="Airport Run" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Airport Runs (IGI)</h3>
+                        <p class="text-4xl font-black gradient-text mb-4">Starting at ₹1200</p>
+                         <div class="text-sm text-slate-600 space-y-2 mb-6">
+                           <p><strong>What's Included:</strong> 4-hour rental block for pickup or drop-off.</p>
+                           <p><strong>Fine Print:</strong> Parking charges at actuals. Waiting time extra.</p>
+                        </div>
+                        <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I'm%20interested%20in%20an%20airport%20package." target="_blank" class="block w-full text-center gradient-bg text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-all focusable">
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200 hover-lift" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://placehold.co/600x300/F1F5F9/475569?text=Weekend+Pack" alt="Weekend Pack" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Weekend Pack 30% Off</h3>
+                        <p class="text-4xl font-black gradient-text mb-4">Getaway Special</p>
+                        <div class="text-sm text-slate-600 space-y-2 mb-6">
+                           <p><strong>What's Included:</strong> Friday 6 PM to Sunday 10 PM booking.</p>
+                           <p><strong>Fine Print:</strong> Offer valid on select SUVs and Sedans. Limited Kms apply.</p>
+                        </div>
+                        <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I'm%20interested%20in%20the%20Weekend%20Pack." target="_blank" class="block w-full text-center gradient-bg text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-all focusable">
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Other page templates -->
+    <template id="partner-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">Partner with Us</h1>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">Join our network of car owners and start earning passive income. We handle everything from bookings to maintenance.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-12" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl font-bold gradient-text mb-8 text-center">Benefits of Partnering</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-carorent-100 text-carorent-600 p-3 rounded-xl">💰</div>
+                            <div>
+                                <h3 class="font-bold text-lg">Guaranteed Income</h3>
+                                <p class="text-slate-600">Earn ₹15,000-₹25,000 per month</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-carorent-100 text-carorent-600 p-3 rounded-xl">🛡️</div>
+                            <div>
+                                <h3 class="font-bold text-lg">Full Insurance Coverage</h3>
+                                <p class="text-slate-600">Complete protection for your vehicle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-carorent-100 text-carorent-600 p-3 rounded-xl">🔧</div>
+                            <div>
+                                <h3 class="font-bold text-lg">Free Maintenance</h3>
+                                <p class="text-slate-600">We handle all servicing and repairs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-carorent-100 text-carorent-600 p-3 rounded-xl">📱</div>
+                            <div>
+                                <h3 class="font-bold text-lg">24/7 Support</h3>
+                                <p class="text-slate-600">Round-the-clock assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-10">
+                    <a href="https://wa.me/918901663844?text=Hi%20Carorent%2C%20I%20want%20to%20partner%20with%20you." target="_blank" class="gradient-bg text-white px-10 py-4 rounded-2xl font-bold text-xl hover:opacity-90 transition-all hover-lift focusable">
+                        Start Partnership
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="about-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">About Carorent</h1>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">We're revolutionizing self-drive car rentals in Gurgaon with our commitment to quality, transparency, and customer satisfaction.</p>
+            </div>
+        </div>
+    </template>
+    
+    <template id="contact-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">Contact Us</h1>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">Get in touch with us for bookings, support, or any questions you might have.</p>
+            </div>
+        </div>
+    </template>
+    
+    <template id="faq-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl font-black text-slate-900 mb-4">Frequently Asked Questions</h1>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">Find answers to common questions about our services.</p>
+            </div>
+        </div>
+    </template>
+    
+    <template id="terms-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16 prose max-w-4xl mx-auto">
+            <h1 class="text-5xl font-black text-slate-900 mb-8">Terms & Conditions</h1>
+            <p>Detailed terms and conditions for renting a car from Carorent would be listed here.</p>
+        </div>
+    </template>
+    
+    <template id="privacy-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16 prose max-w-4xl mx-auto">
+            <h1 class="text-5xl font-black text-slate-900 mb-8">Privacy Policy</h1>
+            <p>Our privacy policy detailing how we collect, use, and protect customer information.</p>
+        </div>
+    </template>
+    
+    <template id="cancellation-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16 prose max-w-4xl mx-auto">
+            <h1 class="text-5xl font-black text-slate-900 mb-8">Cancellation & Refund Policy</h1>
+            <p>Clear explanation of cancellation process and refund conditions.</p>
+        </div>
+    </template>
+    
+    <template id="damage-page-template">
+        <div class="container mx-auto px-4 lg:px-8 py-16 prose max-w-4xl mx-auto">
+            <h1 class="text-5xl font-black text-slate-900 mb-8">Damage Policy</h1>
+            <p>Procedures for handling vehicle damage, assessment, and repair costs.</p>
+        </div>
+    </template>
+
+    <script type="module">
+        // --- DATA STORE ---
+        const CARS_DATA = [
+            { id: "swift-2025", name: "Maruti Suzuki Swift 2025", class: "Hatchback", year: 2025, fuel: "Petrol", transmission: "Manual", seating: 5, dailyRate: 2500, hourlyRate: 120, freeKmsPerDay: 150, extraPerKm: 12, deposit: 3000, badges: ["New Model", "Great Mileage"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Swift+2025" },
+            { id: "nissan-magnite-2023", name: "Nissan Magnite 2023", class: "Micro SUV", year: 2023, fuel: "Petrol", transmission: "Manual", seating: 5, dailyRate: 2400, hourlyRate: 120, freeKmsPerDay: 200, extraPerKm: 12, deposit: 4000, badges: ["City + Highway"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Magnite" },
+            { id: "tata-punch-2024", name: "Tata Punch 2024", class: "Micro SUV", year: 2024, fuel: "Petrol", transmission: "Manual", seating: 5, dailyRate: 2500, hourlyRate: 130, freeKmsPerDay: 200, extraPerKm: 12, deposit: 4000, badges: ["High Ground Clearance"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Punch" },
+            { id: "hyundai-verna-2023", name: "Hyundai Verna 2023", class: "Sedan", year: 2023, fuel: "Petrol", transmission: "Automatic", seating: 5, dailyRate: 3950, hourlyRate: 200, freeKmsPerDay: 250, extraPerKm: 15, deposit: 5000, badges: ["Premium", "Automatic"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Verna" },
+            { id: "maruti-baleno-2023", name: "Maruti Suzuki Baleno", class: "Hatchback", year: 2023, fuel: "Petrol", transmission: "Manual", seating: 5, dailyRate: 2900, hourlyRate: 140, freeKmsPerDay: 200, extraPerKm: 13, deposit: 3500, badges: ["Spacious", "Economy"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Baleno" },
+            { id: "tata-tiago-2023", name: "Tata Tiago 2023", class: "Hatchback", year: 2023, fuel: "Petrol", transmission: "Manual", seating: 5, dailyRate: 2300, hourlyRate: 110, freeKmsPerDay: 150, extraPerKm: 12, deposit: 3000, badges: ["Compact", "City Car"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Tiago" },
+            { id: "ford-ecosport-2021", name: "Ford EcoSport", class: "SUV", year: 2021, fuel: "Diesel", transmission: "Manual", seating: 5, dailyRate: 3200, hourlyRate: 160, freeKmsPerDay: 250, extraPerKm: 14, deposit: 5000, badges: ["Unlimited km", "Diesel"], image: "https://placehold.co/400x300/E2E8F0/475569?text=EcoSport" },
+            { id: "mahindra-scorpio-2022", name: "Mahindra Scorpio", class: "SUV", year: 2022, fuel: "Diesel", transmission: "Manual", seating: 7, dailyRate: 5000, hourlyRate: 250, freeKmsPerDay: 300, extraPerKm: 18, deposit: 8000, badges: ["7 Seater", "Powerful"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Scorpio" },
+            { id: "citroen-basalt-2024", name: "Citroën Basalt", class: "SUV", year: 2024, fuel: "Petrol", transmission: "Automatic", seating: 5, dailyRate: 3200, hourlyRate: 170, freeKmsPerDay: 250, extraPerKm: 15, deposit: 5000, badges: ["Stylish", "Automatic"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Citroen+Basalt" },
+            { id: "maruti-fronx-2024", name: "Maruti Suzuki Fronx", class: "Micro SUV", year: 2024, fuel: "Petrol", transmission: "Automatic", seating: 5, dailyRate: 2800, hourlyRate: 150, freeKmsPerDay: 200, extraPerKm: 13, deposit: 4000, badges: ["Modern", "Mileage"], image: "https://placehold.co/400x300/E2E8F0/475569?text=Fronx" },
+        ];
+        
+        // --- GLOBAL STATE ---
+        const state = {
+            currentPage: 'home',
+        };
+
+        // --- RENDER FUNCTIONS ---
+        const renderCarCard = (car, index = 0) => {
+            const whatsappText = encodeURIComponent(`Hi Carorent, I want to book the ${car.name}.`);
+            const whatsappUrl = `https://wa.me/918901663844?text=${whatsappText}`;
+
+            return `
+                <div class="car-card bg-white rounded-3xl shadow-xl overflow-hidden" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="relative">
+                        <img src="${car.image}" alt="${car.name}" class="w-full h-56 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-carorent-600">
+                            ${car.class}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">${car.name}</h3>
+                        <p class="text-sm text-slate-500 mb-4">${car.year} • ${car.fuel} • ${car.transmission}</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${car.badges.map(badge => `<span class="bg-carorent-100 text-carorent-700 text-xs font-semibold px-3 py-1 rounded-full">${badge}</span>`).join('')}
+                        </div>
+                        
+                        <div class="space-y-2 text-sm text-slate-600 mb-6">
+                            <div class="flex justify-between">
+                                <span>Seating:</span>
+                                <span class="font-semibold">${car.seating} Seats</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Free KMs:</span>
+                                <span class="font-semibold">${car.freeKmsPerDay}/day</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Deposit:</span>
+                                <span class="font-semibold">₹${car.deposit.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mb-6">
+                            <div class="text-3xl font-black gradient-text">₹${car.dailyRate.toLocaleString('en-IN')}</div>
+                            <div class="text-sm text-slate-500">per day</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="#" data-page="cars" class="text-center bg-slate-100 text-slate-800 px-4 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all focusable">
+                                Details
+                            </a>
+                            <a href="${whatsappUrl}" target="_blank" class="text-center gradient-bg text-white px-4 py-3 rounded-xl font-bold hover:opacity-90 transition-all focusable">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+        
+        // --- PAGE INITIALIZATION LOGIC ---
+        const pageInitializers = {
+            home: () => {
+                console.log('Initializing Home Page');
+                const featuredCarsGrid = document.getElementById('featured-cars-grid');
+                if (featuredCarsGrid) {
+                    featuredCarsGrid.innerHTML = CARS_DATA.slice(0, 8).map((car, index) => renderCarCard(car, index)).join('');
+                }
+                initTestimonialSlider();
+                initDatePicker();
+                
+                // Initialize AOS animations
+                AOS.refresh();
+            },
+            cars: () => {
+                console.log('Initializing Cars Page');
+                const carsPageGrid = document.getElementById('cars-page-grid');
+                 if (carsPageGrid) {
+                    carsPageGrid.innerHTML = CARS_DATA.map((car, index) => renderCarCard(car, index)).join('');
+                }
+                AOS.refresh();
+            },
+            packages: () => {
+                console.log('Initializing Packages Page');
+                AOS.refresh();
+            },
+            partner: () => {
+                console.log('Initializing Partner Page');
+                AOS.refresh();
+            },
+            about: () => {
+                console.log('Initializing About Page');
+                AOS.refresh();
+            },
+            contact: () => {
+                console.log('Initializing Contact Page');
+                AOS.refresh();
+            },
+            faq: () => {
+                console.log('Initializing FAQ Page');
+                AOS.refresh();
+            },
+            terms: () => {
+                console.log('Initializing Terms Page');
+                AOS.refresh();
+            },
+            privacy: () => {
+                console.log('Initializing Privacy Page');
+                AOS.refresh();
+            },
+            cancellation: () => {
+                console.log('Initializing Cancellation Page');
+                AOS.refresh();
+            },
+            damage: () => {
+                console.log('Initializing Damage Page');
+                AOS.refresh();
+            },
+        };
+
+        // --- NAVIGATION / ROUTER ---
+        const mainContent = document.getElementById('main-content');
+        
+        const navigateTo = (pageName) => {
+            state.currentPage = pageName;
+            const template = document.getElementById(`${pageName}-page-template`);
+            if (template) {
+                mainContent.innerHTML = '';
+                mainContent.appendChild(template.content.cloneNode(true));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Run page-specific JS
+                if (pageInitializers[pageName]) {
+                    setTimeout(() => pageInitializers[pageName](), 100);
+                }
+            } else {
+                console.error(`Template for page "${pageName}" not found.`);
+                if (pageName !== 'home') navigateTo('home');
+            }
+        };
+
+        // --- UI COMPONENT LOGIC ---
+        function initTestimonialSlider() {
+            const slider = document.getElementById('testimonial-slider');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            if (!slider || !dots.length) return;
+
+            let currentIndex = 0;
+            const totalSlides = dots.length;
+
+            const updateSlider = () => {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.remove('bg-slate-300');
+                        dot.classList.add('bg-carorent-500');
+                    } else {
+                        dot.classList.remove('bg-carorent-500');
+                        dot.classList.add('bg-slate-300');
+                    }
+                });
+            };
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+            });
+
+            // Auto-slide every 5 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            }, 5000);
+            
+            updateSlider();
+        }
+
+        function initDatePicker() {
+            const dateRangePicker = document.getElementById('date-range');
+            if (dateRangePicker) {
+                flatpickr(dateRangePicker, {
+                    mode: "range",
+                    minDate: "today",
+                    dateFormat: "d M, Y",
+                });
+            }
+        }
+        
+        // --- EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 50
+            });
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Setup navigation
+            document.body.addEventListener('click', (e) => {
+                const target = e.target.closest('[data-page]');
+                if (target) {
+                    e.preventDefault();
+                    const pageName = target.dataset.page;
+                    navigateTo(pageName);
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.classList.add('bg-white/95', 'shadow-lg');
+                } else {
+                    header.classList.remove('bg-white/95', 'shadow-lg');
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+
+            // Initial page load
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
