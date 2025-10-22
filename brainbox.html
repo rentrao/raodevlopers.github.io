@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>BrainBox – Smart Notes App by Rao Jatin</title>
+    <meta name="description" content="Create, Organize & Save Notes Offline. Safe, Secure, Beautiful – That’s BrainBox.">
+    <meta name="keywords" content="BrainBox, notes app, offline notes, Rao Jatin, BrainBox APK download">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animate on Scroll (AOS) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Styles (Fonts, Gradients, Animations) -->
+    <style>
+        /* Use Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0B0B0D;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Animated Gradient Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #7C4DFF, #4a1bb3, #2c0f6a, #0B0B0D);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        .animated-gradient-footer {
+            background: linear-gradient(-45deg, #7C4DFF, #2c0f6a, #0B0B0D, #0B0B0D);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-navbar {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(11, 11, 13, 0.5);
+            border-bottom: 1px solid rgba(124, 77, 255, 0.2);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #a78afe, #7C4DFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-text-header {
+            background: linear-gradient(90deg, #eee, #c4b5fd, #a78afe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0B0B0D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease-out;
+        }
+        .loader-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #7C4DFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .loader-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #7C4DFF;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Phone Mockup */
+        .phone-mockup {
+            position: relative;
+            margin: auto;
+            border: 8px solid #333;
+            background: #0B0B0D;
+            border-radius: 2.5rem;
+            height: 550px;
+            width: 270px;
+            box-shadow: 0 20px 40px -10px rgba(124, 77, 255, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+        .phone-mockup-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            overflow: hidden;
+            background: linear-gradient(145deg, #1e1e2d, #1a1a29);
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 0.75rem;
+        }
+        .phone-mockup-notch {
+            width: 100px;
+            height: 18px;
+            background: #333;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        .phone-mockup-note {
+            background-color: #fef3c7;
+            color: #713f12;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Feature Card Hover Glow */
+         .feature-card {
+             background-color: #1a1a1f; /* Slightly lighter than bg */
+             border: 1px solid rgba(124, 77, 255, 0.2);
+             border-radius: 1rem; /* 2xl */
+             padding: 1.5rem; /* p-6 */
+             transition: all 0.3s ease-in-out;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(124, 77, 255, 0.4);
+            border-color: rgba(124, 77, 255, 0.5);
+            background-color: #201f25;
+        }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            cursor: grab;
+        }
+        .carousel-track:active {
+            cursor: grabbing;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .carousel-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background-color: #7C4DFF;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border-radius: 50%;
+            padding: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .carousel-arrow:hover {
+            background-color: rgba(124, 77, 255, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .carousel-arrow.left { left: 1.5rem; }
+        .carousel-arrow.right { right: 1.5rem; }
+        @media (max-width: 768px) {
+            .carousel-arrow {
+                display: none; /* Hide arrows on mobile, use swipe */
+            }
+        }
+        
+        /* Download Button Sparks */
+        .sparkle-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .sparkle {
+            position: absolute;
+            background-color: white;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle-anim 0.8s ease-out;
+            pointer-events: none;
+        }
+        @keyframes sparkle-anim {
+            0% { transform: scale(0); opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 0. Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <span class="loader-text">🧠 BrainBox Loading...</span>
+        </div>
+    </div>
+
+    <!-- 1. Top Navigation Bar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Left Side: Logo -->
+            <a href="#home" class="text-3xl transform hover:scale-110 transition-transform">🧠</a>
+            
+            <!-- Center: App Name (Desktop) -->
+            <div class="hidden md:block">
+                <span class="text-3xl font-extrabold gradient-text-header">BrainBox</span>
+            </div>
+
+            <!-- Right Side: Nav Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
+                <a href="#download" class="bg-violet-600 hover:bg-violet-500 text-white px-5 py-2 rounded-2xl transition-all duration-300 shadow-lg shadow-violet-600/30 transform hover:scale-105">Download</a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="md:hidden">
+                <button id="mobile-menu-open" class="text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Mobile Menu (Full Screen) -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black/90 backdrop-blur-xl z-[100] flex flex-col items-center justify-center space-y-8 text-2xl text-white transform -translate-x-full transition-transform duration-500 ease-in-out">
+        <button id="mobile-menu-close" class="absolute top-8 right-6 text-white">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#features" class="mobile-nav-link">Features</a>
+        <a href="#download" class="mobile-nav-link bg-violet-600 px-6 py-3 rounded-2xl">Download APK</a>
+        <span class="text-4xl font-extrabold gradient-text-header mt-8">🧠 BrainBox</span>
+    </div>
+
+    <main>
+
+        <!-- 2. Hero Section -->
+        <section id="home" class="relative w-full min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden animated-gradient" data-aos="fade-in">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
+                    🧠 BrainBox
+                </h1>
+                <h2 class="text-4xl md:text-6xl font-extrabold gradient-text mt-2">
+                    Your Smartest Notes App Ever!
+                </h2>
+                
+                <p class="mt-6 text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                    Create, Organize, and Remember — Everything in One Box.
+                </p>
+                
+                <!-- App Preview Image -->
+                <div class="mt-12" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="phone-mockup">
+                        <div class="phone-mockup-notch"></div>
+                        <div class="phone-mockup-inner">
+                            <h3 class="text-lg font-bold text-gray-100 mb-2">My Notes</h3>
+                            <div class="phone-mockup-note">
+                                <strong>🚀 Project Titan</strong><br>
+                                Finalize the presentation slides for Monday's meeting.
+                            </div>
+                            <div class="phone-mockup-note" style="background-color: #dbeafe; color: #1e40af;">
+                                <strong>🛒 Grocery List</strong><br>
+                                - Milk<br>
+                                - Eggs<br>
+                                - Bread
+                            </div>
+                            <div class="phone-mockup-note" style="background-color: #fee2e2; color: #991b1b;">
+                                <strong>💡 App Idea</strong><br>
+                                A notes app that's 100% offline and secure. Call it "BrainBox".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6" data-aos="fade-up" data-aos-delay="400">
+                    <button onclick="handleDownload()" class="sparkle-button flex items-center justify-center gap-2 bg-white text-black text-lg font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-white/30 transform hover:scale-105 transition-all duration-300">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        Download APK
+                    </button>
+                    <a href="#features" class="flex items-center justify-center gap-2 border-2 border-gray-400 text-gray-200 text-lg font-semibold px-8 py-4 rounded-2xl transform hover:scale-105 hover:bg-white/10 transition-all duration-300">
+                        <i data-lucide="compass" class="w-5 h-5"></i>
+                        Explore Features
+                    </a>
+                </div>
+                
+                <!-- Security Text -->
+                <div class="mt-10 flex items-center justify-center gap-2 text-gray-300" data-aos="fade-up" data-aos-delay="500">
+                    <i data-lucide="lock" class="w-5 h-5 text-green-400"></i>
+                    <span>Safe, Secure & 100% Offline Supported App</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3. About Section -->
+        <section id="about" class="py-24 bg-black">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Why Choose <span class="gradient-text">BrainBox?</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <!-- Left Side: App Image -->
+                    <div data-aos="fade-right" data-aos-delay="100">
+                         <div class="phone-mockup">
+                            <div class="phone-mockup-notch"></div>
+                            <div class="phone-mockup-inner" style="background: linear-gradient(145deg, #2d1e2d, #1a1a29); padding: 0;">
+                                <img src="https://placehold.co/270x550/7C4DFF/0B0B0D?text=Dark+Mode\nUI\n✨" alt="BrainBox Dark Mode" class="w-full h-full object-cover rounded-[2rem]">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Text -->
+                    <div class="space-y-6 text-lg text-gray-300" data-aos="fade-left" data-aos-delay="100">
+                        <p class="text-xl leading-relaxed">
+                            ✨ BrainBox, created by <strong>Rao Jatin</strong>, helps you stay organized, creative, and stress-free. It's a lightweight, powerful, and beautifully designed notes app built just for you.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="wifi-off" class="w-6 h-6 text-violet-400 flex-shrink-0 mt-1"></i>
+                                <span><strong>Works Even Without Internet</strong> — Your data is always safe and accessible right on your device. 💾</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="palette" class="w-6 h-6 text-violet-400 flex-shrink-0 mt-1"></i>
+                                <span><strong>Beautiful UI</strong> — Enjoy a stunning interface with multiple color themes, system-based dark & light modes. 🎨</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-violet-400 flex-shrink-0 mt-1"></i>
+                                <span><strong>Privacy First, Always</strong> — We believe your thoughts should stay yours. BrainBox is 100% private and secure. 🔒</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Full Features Showcase -->
+        <section id="features" class="py-24" style="background-color: #0F0F12;">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">📋 Complete Features List</h2>
+                <p class="text-xl text-center text-violet-400 font-semibold mb-12">
+                    🔥 37+ Total Features, 100% Offline, AdMob Ready
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card: Core -->
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="clipboard-list" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Core Features</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Create, Edit, Delete Notes</li>
+                            <li>Advanced Search Functionality</li>
+                            <li>Rich Text Editing (Bold, Italic)</li>
+                            <li>Checklist / To-Do Notes</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature Card: Design & UI -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="palette" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Design & UI</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Beautiful & Modern UI</li>
+                            <li>Multiple Color Themes</li>
+                            <li>Light, Dark, & System Modes</li>
+                            <li>Smooth Animations</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature Card: Organization -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="folder" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Organization</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Categorize Notes</li>
+                            <li>Pin Important Notes</li>
+                            <li>Archive & Trash Folders</li>
+                            <li>Sort Notes (Date, Title)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature Card: Reminders -->
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="clock" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Reminders</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Set Note Reminders</li>
+                            <li>Notification Support</li>
+                            <li>Snooze Functionality</li>
+                            <li>Calendar View</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature Card: Monetization -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Monetization</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>AdMob Ads Integrated</li>
+                            <li>In-App Purchases (Pro)</li>
+                            <li>Remove Ads Option</li>
+                            <li>Splash Screen Ads</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature Card: Actions -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="play-circle" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Actions</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Share Notes to Other Apps</li>
+                            <li>Copy to Clipboard</li>
+                            <li>Export as .txt</li>
+                            <li>Quick Note from Notification</li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Card: Technical -->
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="smartphone" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Technical</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>100% Offline Support</li>
+                            <li>Local Encrypted Database</li>
+                            <li>Biometric App Lock</li>
+                            <li>Lightweight & Fast</li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Card: Branding -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="award" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Branding</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Custom Splash Screen</li>
+                            <li>Unique App Icon</li>
+                            <li>"About Us" Page</li>
+                            <li>Rate App & Feedback</li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Card: Stats -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="bar-chart-2" class="w-8 h-8 text-violet-400"></i>
+                            <h3 class="text-2xl font-bold">Stats</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Note Count</li>
+                            <li>Word Count</li>
+                            <li>Last Edited Timestamp</li>
+                            <li>Category Breakdown</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5. Security & Safety Section -->
+        <section class="py-24 bg-black">
+            <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+                <div class="inline-block p-5 bg-violet-900/50 rounded-full border-2 border-violet-700 mb-6 shadow-xl shadow-violet-500/20">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-violet-300"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">🔒 Safe & Secure</h2>
+                <div class="p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-transparent border border-gray-800">
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        BrainBox never stores your personal data online. All your notes are <strong>locally encrypted</strong> on your device, ensuring complete privacy. You can use it offline anytime, anywhere, with no risk of data loss or unauthorized access. Your thoughts are yours alone.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. App Preview Gallery -->
+        <section class="py-24" style="background-color: #0F0F12;" data-aos="fade-up">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">App Preview Gallery</h2>
+                <p class="text-xl text-center text-gray-300 mb-12">
+                    Beautiful inside & out ✨ — Designed for productivity and peace of mind.
+                </p>
+                
+                <div id="carousel" class="carousel-container">
+                    <div id="carousel-track" class="carousel-track">
+                        <!-- Slide 1: Colorful Notes -->
+                        <div class="carousel-slide flex-shrink-0 w-full flex justify-center">
+                            <div class="phone-mockup">
+                                <div class="phone-mockup-notch"></div>
+                                <div class="phone-mockup-inner">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">All Notes</h3>
+                                    <div class="phone-mockup-note" style="background-color: #fef3c7; color: #713f12;"><strong>🚀 Project Titan</strong>...</div>
+                                    <div class="phone-mockup-note" style="background-color: #dbeafe; color: #1e40af;"><strong>🛒 Grocery List</strong>...</div>
+                                    <div class="phone-mockup-note" style="background-color: #fee2e2; color: #991b1b;"><strong>💡 App Idea</strong>...</div>
+                                    <div class="phone-mockup-note" style="background-color: #d1fae5; color: #065f46;"><strong>🧘‍♀️ Goals</strong>...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2: Dark Mode -->
+                        <div class="carousel-slide flex-shrink-0 w-full flex justify-center">
+                            <div class="phone-mockup" style="background: #111827;">
+                                <div class="phone-mockup-notch" style="background: #111827;"></div>
+                                <div class="phone-mockup-inner" style="background: #1f2937;">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">Dark Mode</h3>
+                                    <div class="phone-mockup-note" style="background-color: #374151; color: #f3f4f6;">
+                                        <strong>Meeting Notes</strong><br>
+                                        - Q4 strategy<br>
+                                        - Budget review
+                                    </div>
+                                    <div class="phone-mockup-note" style="background-color: #4b5563; color: #f3f4f6;">
+                                        <strong>Journal Entry</strong><br>
+                                        Today was a productive day.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3: Reminders -->
+                        <div class="carousel-slide flex-shrink-0 w-full flex justify-center">
+                            <div class="phone-mockup">
+                                <div class="phone-mockup-notch"></div>
+                                <div class="phone-mockup-inner">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">Reminders ⏰</h3>
+                                    <div class="phone-mockup-note" style="background-color: #fffbeb; color: #713f12;">
+                                        <strong>Pay Bill</strong><br>
+                                        <span class="text-sm text-red-600">Today, 5:00 PM</span>
+                                    </div>
+                                    <div class="phone-mockup-note" style="background-color: #f0fdf4; color: #15803d;">
+                                        <strong>Call Mom</strong><br>
+                                        <span class="text-sm text-gray-500">Tomorrow, 12:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Arrows -->
+                    <button id="carousel-prev" class="carousel-arrow left">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button id="carousel-next" class="carousel-arrow right">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div id="carousel-dots" class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- 7. Download Section -->
+        <section id="download" class="py-24 bg-black">
+            <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-10">⬇ Download BrainBox Now</h2>
+                
+                <button onclick="handleDownload()" class="sparkle-button flex items-center justify-center gap-3 bg-violet-600 text-white text-xl md:text-2xl font-bold px-12 py-6 rounded-2xl shadow-lg shadow-violet-500/40 transform hover:scale-105 hover:bg-violet-500 transition-all duration-300 w-full sm:w-auto mx-auto">
+                    <i data-lucide="download-cloud" class="w-7 h-7"></i>
+                    Download BrainBox.apk
+                </button>
+                
+                <p class="mt-6 text-gray-400">
+                    (Safe & verified file – no ads, no malware)
+                </p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- 8. Footer -->
+    <footer class="animated-gradient-footer pt-20 pb-8">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-gray-300">
+            <h3 class="text-3xl font-bold mb-2">🧠 BrainBox</h3>
+            <p class="text-lg font-semibold mb-4">Powered by RAO JATIN</p>
+            <p class="text-md max-w-lg mx-auto mb-6">
+                “Smart, Secure, and Stylish Notes App for Everyone.”
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-8">
+                <a href="mailto:jatinhelpline89@gmail.com" class="flex items-center gap-2 hover:text-white transition-colors transform hover:scale-105">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    jatinhelpline89@gmail.com
+                </a>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    +91 9499473347
+                </span>
+            </div>
+            
+            <hr class="border-t border-white/20 w-1/4 mx-auto mb-6">
+            
+            <p class="text-gray-400">&copy; 2025 BrainBox. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating Buttons -->
+    
+    <!-- Scroll-to-Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-violet-600 hover:bg-violet-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 translate-y-20 z-40 transform hover:scale-110">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Floating Download Button (Mobile Only) -->
+    <button onclick="handleDownload()" class="sparkle-button md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-white text-black font-semibold px-6 py-3 rounded-2xl shadow-lg shadow-white/30 z-40 flex items-center gap-2 transform hover:scale-105" data-aos="fade-up" data-aos-anchor="#download" data-aos-delay="300">
+        <i data-lucide="download" class="w-5 h-5"></i>
+        Download APK
+    </button>
+
+    <!-- Lucide Icons Script -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/lucide.min.js"></script>
+    
+    <!-- Animate on Scroll (AOS) Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 0. Hide Loader on Page Load ---
+            const loader = document.getElementById('loader');
+            window.onload = () => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    
+                    // Initialize AOS after loader is hidden
+                    AOS.init({
+                        duration: 800, // animation duration
+                        once: true,     // whether animation should happen only once
+                        offset: 50      // offset (in px) from the original trigger point
+                    });
+                }, 500); // Match CSS transition
+            };
+
+            // --- 1. Navbar Logic ---
+            const navbar = document.getElementById('navbar');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openMenuBtn = document.getElementById('mobile-menu-open');
+            const closeMenuBtn = document.getElementById('mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            // Glassmorphism on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('glass-navbar');
+                } else {
+                    navbar.classList.remove('glass-navbar');
+                }
+            });
+            
+            // Mobile menu toggle
+            openMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+            });
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+            });
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                });
+            });
+
+            // --- 2. Scroll-to-Top Button ---
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.remove('translate-y-20');
+                } else {
+                    scrollToTopBtn.classList.add('translate-y-20');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // --- 3. Scroll Animations (AOS) ---
+            // AOS is initialized in window.onload
+
+            // --- 4. Carousel Logic ---
+            const carousel = document.getElementById('carousel');
+            const track = document.getElementById('carousel-track');
+            const dotsContainer = document.getElementById('carousel-dots');
+            const prevBtn = document.getElementById('carousel-prev');
+            const nextBtn = document.getElementById('carousel-next');
+            
+            if (track) {
+                let slides = Array.from(track.children);
+                let slideWidth = slides[0].getBoundingClientRect().width;
+                let currentIndex = 0;
+                let dots = [];
+                let autoSlideInterval;
+                
+                // --- Swipe Detection Variables ---
+                let isDragging = false;
+                let startPos = 0;
+                let currentTranslate = 0;
+                let prevTranslate = 0;
+                let animationID;
+
+                function setupCarousel() {
+                    // Clear existing dots
+                    dotsContainer.innerHTML = '';
+                    dots = [];
+                    
+                    // Recalculate slide width
+                    slideWidth = slides[0].getBoundingClientRect().width;
+                    
+                    // Create dots
+                    slides.forEach((_, index) => {
+                        const dot = document.createElement('button');
+                        dot.classList.add('carousel-dot');
+                        if (index === 0) dot.classList.add('active');
+                        dot.addEventListener('click', () => {
+                            goToSlide(index);
+                            restartAutoSlide();
+                        });
+                        dotsContainer.appendChild(dot);
+                        dots.push(dot);
+                    });
+                    
+                    // Set initial position
+                    goToSlide(0);
+                    startAutoSlide();
+                }
+
+                function updateDots() {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    if (dots[currentIndex]) {
+                        dots[currentIndex].classList.add('active');
+                    }
+                }
+
+                function goToSlide(index) {
+                    if (index < 0) index = slides.length - 1;
+                    if (index >= slides.length) index = 0;
+                    
+                    track.style.transform = `translateX(-${slideWidth * index}px)`;
+                    currentIndex = index;
+                    updateDots();
+                }
+                
+                function startAutoSlide() {
+                    stopAutoSlide(); // Clear existing
+                    autoSlideInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000); // Auto-slide every 5 seconds
+                }
+                
+                function stopAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                }
+                
+                function restartAutoSlide() {
+                    stopAutoSlide();
+                    startAutoSlide();
+                }
+
+                // --- Event Listeners ---
+                prevBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                    restartAutoSlide();
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                    restartAutoSlide();
+                });
+                
+                carousel.addEventListener('mouseenter', stopAutoSlide);
+                carousel.addEventListener('mouseleave', startAutoSlide);
+
+                // Handle resize
+                window.addEventListener('resize', () => {
+                    slideWidth = slides[0].getBoundingClientRect().width;
+                    track.style.transition = 'none'; // Disable transition for resize
+                    goToSlide(currentIndex);
+                    track.style.transition = 'transform 0.5s ease-in-out'; // Re-enable
+                });
+
+                // --- Swipe Logic ---
+                track.addEventListener('touchstart', touchStart);
+                track.addEventListener('touchmove', touchMove);
+                track.addEventListener('touchend', touchEnd);
+                track.addEventListener('mousedown', touchStart);
+                track.addEventListener('mousemove', touchMove);
+                track.addEventListener('mouseup', touchEnd);
+                track.addEventListener('mouseleave', touchEnd);
+
+                function touchStart(event) {
+                    isDragging = true;
+                    startPos = getPositionX(event);
+                    animationID = requestAnimationFrame(animation);
+                    track.style.transition = 'none';
+                    stopAutoSlide();
+                }
+
+                function touchMove(event) {
+                    if (!isDragging) return;
+                    const currentPosition = getPositionX(event);
+                    currentTranslate = prevTranslate + currentPosition - startPos;
+                }
+
+                function touchEnd() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    cancelAnimationFrame(animationID);
+                    
+                    const movedBy = currentTranslate - prevTranslate;
+                    
+                    // Swipe threshold: 30% of slide width
+                    if (movedBy < -slideWidth * 0.2 && currentIndex < slides.length - 1) {
+                        goToSlide(currentIndex + 1);
+                    } else if (movedBy > slideWidth * 0.2 && currentIndex > 0) {
+                        goToSlide(currentIndex - 1);
+                    } else {
+                        // Snap back
+                        goToSlide(currentIndex);
+                    }
+
+                    track.style.transition = 'transform 0.5s ease-in-out';
+                    prevTranslate = currentTranslate;
+                    startAutoSlide();
+                }
+                
+                function getPositionX(event) {
+                    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+                }
+                
+                function animation() {
+                    setSliderPosition();
+                    if (isDragging) requestAnimationFrame(animation);
+                }
+                
+                function setSliderPosition() {
+                    track.style.transform = `translateX(${currentTranslate}px)`;
+                }
+
+                // Initial setup
+                setupCarousel();
+            }
+
+            // --- 5. Lucide Icons ---
+            lucide.createIcons();
+
+            // --- 6. Sparkle Button Effect ---
+            document.querySelectorAll('.sparkle-button').forEach(button => {
+                button.addEventListener('mouseenter', (e) => {
+                    for (let i = 0; i < 5; i++) { // Create a small burst
+                        createSparkle(e, button);
+                    }
+                });
+                
+                function createSparkle(e, button) {
+                    const sparkle = document.createElement('span');
+                    sparkle.classList.add('sparkle');
+                    // Position sparkle randomly within the button
+                    const x = (Math.random() - 0.5) * button.offsetWidth + (e.clientX - button.getBoundingClientRect().left);
+                    const y = (Math.random() - 0.5) * button.offsetHeight + (e.clientY - button.getBoundingClientRect().top);
+                    
+                    sparkle.style.left = x + 'px';
+                    sparkle.style.top = y + 'px';
+                    sparkle.style.animationDelay = `${Math.random() * 0.2}s`;
+                    
+                    button.appendChild(sparkle);
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 800);
+                }
+            });
+            
+            // --- 7. Set Emoji Favicon ---
+            const setFavicon = (emoji) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 64;
+                canvas.height = 64;
+                const ctx = canvas.getContext('2d');
+                ctx.font = '50px serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(emoji, 32, 32);
+                
+                const link = document.createElement('link');
+                link.rel = 'icon';
+                link.href = canvas.toDataURL();
+                document.head.appendChild(link);
+            };
+            setFavicon('🧠');
+            
+        }); // End DOMContentLoaded
+
+        // --- APK Download Function ---
+        function handleDownload() {
+            try {
+                const dummyContent = "This is a placeholder file for the BrainBox APK. Created by Rao Jatin.";
+                const blob = new Blob([dummyContent], { type: 'application/vnd.android.package-archive' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Brain-Box.apk';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error("Download failed:", error);
+                // In-page fallback message instead of alert()
+                const downloadSection = document.getElementById('download');
+                let errorMsg = document.getElementById('download-error');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('p');
+                    errorMsg.id = 'download-error';
+                    errorMsg.className = 'text-red-400 mt-4';
+                    downloadSection.querySelector('.container').appendChild(errorMsg);
+                }
+                errorMsg.textContent = 'Download failed. Please check your browser permissions and try again.';
+            }
+        }
+    </script>
+</body>
+</html>
+
